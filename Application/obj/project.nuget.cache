@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "YZO7QnLNPCues/6sL3K2HDDMbCbOuQVMrfpIj92td/y7cUjA0bzNzSRMJ/3j/PD15jlOVIFT+Op/64UsM3lqJA==",
+  "success": true,
+  "projectFilePath": "C:\\Sistema Finanzas\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
