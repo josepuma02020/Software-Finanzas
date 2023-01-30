@@ -26,7 +26,6 @@ namespace Application.Servicios.TiposDocumento
             var nuevoTipoDocumento = new TipoDocumento()
             {
                DescripcionTipoDocumento = request.DescripcionTipoDocumento,
-               Clasificaciones = request.Clasificaciones,
                 Id = Guid.NewGuid(),
             };
 
@@ -42,9 +41,12 @@ namespace Application.Servicios.TiposDocumento
     }
     public class RegistrarTipoDocumentoDto : IRequest<Response>
     {
-        public int Id { get; set; }
+        public string CodigoTipoDocumento { get; set; }
         public string DescripcionTipoDocumento { get; set; }
-        public List<ClasificacionTipoDocumento> Clasificaciones { get; set; }
+        public RegistrarTipoDocumentoDto()
+        {
+
+        }
     }
     public class RegistrarTipoDocumentoDtoValidator : AbstractValidator<RegistrarTipoDocumentoDto>
     {
@@ -57,14 +59,9 @@ namespace Application.Servicios.TiposDocumento
 
         private void SetUpValidators()
         {
-            RuleFor(e => e.DescripcionTipoDocumento).NotEmpty().Length(5, 50);
+            RuleFor(e => e.CodigoTipoDocumento).NotEmpty().Length(2, 10).WithMessage("El tamaño del codigo de documento es invalido.");
+            RuleFor(e => e.DescripcionTipoDocumento).NotEmpty().Length(5, 50).WithMessage("El tamaño de la descripcion del tipo de documento es invalido.");
 
-        }
-        private bool NoExisteCuenta(string CodigoCuenta)
-        {
-            Cuenta CuentaBuscada = _unitOfWork.GenericRepository<Cuenta>()
-                .FindFirstOrDefault(e => e.CodigoCuenta == CodigoCuenta);
-            return CuentaBuscada != null;
         }
     }
 }

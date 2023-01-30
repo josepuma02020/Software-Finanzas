@@ -1,4 +1,5 @@
 ﻿using Domain.Aplicacion;
+using Domain.Base;
 using Domain.Clases;
 using Domain.Extensions;
 using System;
@@ -10,15 +11,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    internal class Role
-    {
-        public int Id { get; set; }
-        public Rol Rol { get; set; }
-        public string NombreRol => Rol.GetDescription();
-        public IEnumerable<Usuario> Usuarios { get; set; }
-
-       
-    }
     public enum Rol
     {
         [Description("Normal")] Normal,
@@ -27,19 +19,10 @@ namespace Domain.Entities
         [Description("Autorizador de notascontables")] Autorizadordenotascontables,
         [Description("Aprobador de facturas")] Aprobadordefacturas,
         [Description("Administrador")] Administrador,
+        [Description("Administrador de notas contables")] AdminitradorNotaContable,
+        [Description("Administrador de facturas")] AdministradorFactura,
     }
 
-    public class Funcionalidades
-    {
-        public int Id { get; set; }
-        public string DescripcionFuncionalidad { get; set; }
-    }
-
-    public class RolFuncionalidades
-    {
-        public Funcionalidades Funcionalidad { get; set; }
-        public Rol Rol { get; set; }
-    }
 
 
 }

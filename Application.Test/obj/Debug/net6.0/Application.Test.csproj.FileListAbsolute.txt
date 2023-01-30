@@ -1,0 +1,6 @@
+C:\Sistema Finanzas\Application.Test\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Sistema Finanzas\Application.Test\obj\Debug\net6.0\Application.Test.csproj.AssemblyReference.cache
+C:\Sistema Finanzas\Application.Test\obj\Debug\net6.0\Application.Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sistema Finanzas\Application.Test\obj\Debug\net6.0\Application.Test.AssemblyInfoInputs.cache
+C:\Sistema Finanzas\Application.Test\obj\Debug\net6.0\Application.Test.AssemblyInfo.cs
+C:\Sistema Finanzas\Application.Test\obj\Debug\net6.0\Application.Test.csproj.CoreCompileInputs.cache

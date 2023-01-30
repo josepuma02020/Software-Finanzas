@@ -10,7 +10,12 @@ namespace Domain.Entities
     public class Tercero:Entity<Guid>
     {
         public string Nombre { get; set; }
-        public int codigotercero { get; set; }
-
+        public string Codigotercero { get; set; }
+        public Estado Estado { get; set; }
+        public Tercero SetEstado(Estado estado)
+        {
+            this.Estado = estado;
+            return this;
+        }
     }
 }

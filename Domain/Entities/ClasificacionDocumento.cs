@@ -11,7 +11,7 @@ namespace Domain.Entities
     public class ClasificacionDocumento : Entity<Guid>
     {
         public string Descripcion {get;set;}
-        public ClasificacionTipoDocumento ClasificacionProceso { get; set; }
+        public ProcesosDocumentos ClasificacionProceso { get; set; }
         public string NombreClasificacion => ClasificacionProceso.GetDescription();
     }
 }

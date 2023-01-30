@@ -46,6 +46,10 @@ namespace Application.Servicios.Usuarios
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
+        public RegistrarUsuarioDto()
+        {
+
+        }
     }
     public class RegistrarUsuarioDtoValidator : AbstractValidator<RegistrarUsuarioDto>
     {

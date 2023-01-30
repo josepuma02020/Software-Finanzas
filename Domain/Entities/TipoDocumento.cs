@@ -14,12 +14,11 @@ namespace Domain.Entities
     {
         public string CodigoTipoDocumento { get; set; }
         public string DescripcionTipoDocumento { get; set; }
-        public List<ClasificacionTipoDocumento> Clasificaciones { get; set; }
+        public List<ProcesosDocumentos> ProcesosDocumento { get; set; }
     }
-    public enum ClasificacionTipoDocumento
+    public enum ProcesosDocumentos
     {
         [Description("Facturas")] Facturas,
-        [Description("NotasContableFinanciacion")] NotasContableFinanciacion,
-        [Description("NotasContableContabilidad")] NotasContableContabilidad,
+        [Description("Notas Contable Financiacion")] NotasContable,
     }
 }

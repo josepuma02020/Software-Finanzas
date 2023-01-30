@@ -13,18 +13,29 @@ namespace Domain.Entities
     {
         public string ? Descripcion { get; set; }
         public string ? CodigoCuenta { get; set; }
-        public virtual Concepto Concepto { get;  set; }
-        public string DescConcepto => Concepto == Concepto.Debito ? "Debito" : "Credito";
-        public virtual ClasificacionCuenta Clasificacion { get;  set; }
-        public string DescClasificacion => Clasificacion.DescripcionClasificacionCuenta;
+        public virtual ConceptoCuenta Concepto { get;  set; }
+        public string DescConcepto => Concepto == ConceptoCuenta.Debito ? "Debito" : "Credito";
+        public virtual ClasificacionCuenta Clasificacioncuenta { get;  set; }
+        public string DescClasificacionCuenta => Clasificacioncuenta ==ClasificacionCuenta.Banco ? "Banco" : "Normal";
+        public Cuenta SetConcepto(ConceptoCuenta nuevoconcepto)
+        {
+            this.Concepto= nuevoconcepto;
+            return this;
+        }
+        public Cuenta SetClasificacionCuenta(ClasificacionCuenta nuevaclasificacion)
+        {
+            this.Clasificacioncuenta = nuevaclasificacion;
+            return this;
+        }
     }
-    public enum Concepto
+    public enum ConceptoCuenta
     {
         Debito,
         Credito,
     }
-    public class ClasificacionCuenta : Entity<Guid>
+    public enum ClasificacionCuenta
     {
-        public string DescripcionClasificacionCuenta { get; set; }
+        Banco,
+        Normal,
     }
 }

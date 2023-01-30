@@ -15,16 +15,25 @@ namespace Domain.Entities
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string Ultingreso { get; set; }
-        public new Estadousuario Estado  { get; set; }
+        public new Estado Estado  { get; set; }
         public Rol  Rol { get; set; }
         public Usuario()
         {
-            Estado = Estadousuario.Activo;
+            Estado = Estado.Activo;
         }
-
+        public Usuario SetRole(Rol role)
+        {
+            this.Rol = role;
+            return this;
+        }
+        public Usuario SetEstado(Estado estado)
+        {
+            this.Estado = estado;
+            return this;
+        }
     }
     
-    public enum Estadousuario
+    public enum Estado
     {
         Inactivo,
         Activo

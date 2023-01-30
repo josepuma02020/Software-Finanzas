@@ -12,23 +12,25 @@ using Domain.Extensions;
 
 namespace Domain.Clases
 {
-    public class NotaContable : Entity<Guid>
+    public class NotaContable : BaseEntityDocumento
     {
-        public string? Fechabatch { get; set; }
+        public DateTime? Fechabatch { get; set; }
         public string? Batch { get; set; }
+        public Usuario UsuarioCreador { get; set; }
         public string Comentario { get; set; }
         public int Importe { get; set; }
+        public List<AppFile> soportes { get; set; }
         public ClasificacionDocumento ClasificacionDocumento { get; set; }
         public string DescripcionClasificacionDocumento =>ClasificacionDocumento.Descripcion;
-        public virtual EstadoNotaContable EstadoNotaContable { get;  set; }
-        public string DescripcionEstadoNotaContable => EstadoNotaContable.GetDescription();
         public List<Registrodenotacontable>  Registrosnota { get; set; }
+        public ProcesosDocumentos ProcesoDocumento { get; set; }
         public virtual Tiponotacontable Tiponotacontable { get;  set; }
+        public virtual TipoDocumento TipoDocumento { get; set; }
         public string TipoEntidadNombre => Tiponotacontable == Tiponotacontable.Soportes ? "Soportes" : "registrosnota";
-        public NotaContable()
+        public NotaContable SetRegistrosNotaContable(List<Registrodenotacontable> registrosnota)
         {
-            EstadoNotaContable = EstadoNotaContable.Abierto;
-            Batch = null;
+            this.Registrosnota = registrosnota;
+            return this;
         }
     }
     public enum Tiponotacontable
@@ -36,23 +38,16 @@ namespace Domain.Clases
         Soportes,
         registrosnota,
     }
-    public enum EstadoNotaContable
-    {
-        [Description("Abierto")] Abierto,
-        [Description("Revision")] Revision,
-        [Description("Aprobado")] Aprobado,
-        [Description("Autorizado")] Autorizado,
-        [Description("Cerrado")] Cerrado,
-    }
     public class Registrodenotacontable:Entity<Guid>
     {
+        public DateTime? Fecha { get; set; }
         public string ? Haber { get; set; }
         public string ? Debe { get; set; }
         public string ? Lm { get; set; }
         public string ? Tipolm{ get; set; }
-        public Tercero Tercero { get; set; }
-        public Cuenta cuenta { get; set; }
-        public string NotaContableId { get; set; }
+        public Tercero? Tercero { get; set; }
+        public Cuenta? Cuenta { get; set; }
+        public Guid NotaContableId { get; set; }
 
  
     }   

@@ -23,11 +23,13 @@ namespace Application.Servicios.Facturas
         }
         public Task<Response> Handle(RegistrarFacturaDto request, CancellationToken cancellationToken)
         {
+            var tercero = Validator.Tercero;
+            var usuario = Validator.UsuarioRegistroFactura;
             var nuevafactura = new Factura()
             {
-                 CodigoTercero= request.CodigoTercero,
-                  fechapago=request.fechapago,
-                  UsuarioQueRegistroFactura=request.UsuarioQueRegistroFactura,
+                 Tercero= tercero,
+                  fechapago=request.fechaPago,
+                  UsuarioCreador=usuario,
                   Valor=request.Valor,
                   Observaciones=request.Observaciones,
                   ri=request.ri,
@@ -46,17 +48,22 @@ namespace Application.Servicios.Facturas
     }
     public class RegistrarFacturaDto : IRequest<Response>
     {
-        public Usuario UsuarioQueRegistroFactura { get; set; }
-        public Tercero? CodigoTercero { get; set; }
+        public Guid UsuarioRegistroFacturaId { get; set; }
+        public Guid? TerceroId { get; set; }
         public int Valor { get; set; }
-        public string Observaciones { get; set; }
+        public string? Observaciones { get; set; }
+        public DateTime fechaPago { get; set; }
+        public string ? ri { get; set; }
+        public RegistrarFacturaDto()
+        {
 
-        public string fechapago { get; set; }
-        public string ri { get; set; }
+        }
     }
     public class RegistrarFacturaDtoValidator : AbstractValidator<RegistrarFacturaDto>
     {
         private readonly IUnitOfWork _unitOfWork;
+        public Usuario UsuarioRegistroFactura;
+        public Tercero Tercero;
         public RegistrarFacturaDtoValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -65,9 +72,23 @@ namespace Application.Servicios.Facturas
 
         private void SetUpValidators()
         {
+            RuleFor(bdu => bdu.UsuarioRegistroFacturaId).Must(ExisteUsuario).WithMessage($"El documento suministrado no" +
+               $" fué localizado en el sistema.");
+            RuleFor(bdu => bdu.TerceroId.Value).Must(ExisteTercero).WithMessage($"No se encontro tercero en el sistema.");
             RuleFor(e => e.Valor).NotEmpty().GreaterThanOrEqualTo(1000).WithMessage("El valor de la factura debe ser mayor a 1000.");
-            RuleFor(e => e.fechapago).NotEmpty().Length(5, 50);
+            RuleFor(e => e.fechaPago).NotEmpty().WithMessage("No se encontro fecha de pago");
+            RuleFor(e => e.Valor).NotEmpty().GreaterThan(1000).WithMessage("El valor del pago debe ser mayor a 1000");
 
+        }
+        private bool ExisteUsuario(Guid id)
+        {
+            UsuarioRegistroFactura = _unitOfWork.GenericRepository<Usuario>().FindFirstOrDefault(e => e.Id == id);
+            return UsuarioRegistroFactura != null;
+        }
+        private bool ExisteTercero(Guid id)
+        {
+            Tercero = _unitOfWork.GenericRepository<Tercero>().FindFirstOrDefault(e => e.Id == id);
+            return Tercero != null;
         }
 
     }

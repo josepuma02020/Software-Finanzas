@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class AppFile
+    public class AppFile : Entity<Guid>
     {
         public AppFile(AppFileBuilder appFileBuilder)
         {
@@ -17,7 +18,6 @@ namespace Domain.Entities
         public string Path { get; set; }
         public string Nombre { get; set; }
         public Usuario UsuarioQueCargoElArchivo { get; set; }
-        public int UsuarioQueCargoElArchivoId { get; set; }
         public class AppFileBuilder
         {
             public string Path { get; set; }

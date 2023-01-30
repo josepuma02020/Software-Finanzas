@@ -10,31 +10,35 @@ using System.Threading.Tasks;
 
 namespace Application.Servicios.Cuentas
 {
-  public class RegistrarCuenta : IRequestHandler<RegistrarCuentaDto, Response> {
+    public class RegistrarCuenta : IRequestHandler<RegistrarCuentaDto, Response>
+    {
         private readonly IUnitOfWork _unitOfWork;
 
         public RegistrarCuentaDtoValidator Validator { get; }
 
-        public RegistrarCuenta (IUnitOfWork unitOfWork, IValidator<RegistrarCuentaDto> validator) {
+        public RegistrarCuenta(IUnitOfWork unitOfWork, IValidator<RegistrarCuentaDto> validator)
+        {
             _unitOfWork = unitOfWork;
             Validator = validator as RegistrarCuentaDtoValidator;
         }
-        public Task<Response> Handle (RegistrarCuentaDto request, CancellationToken cancellationToken) {
+        public Task<Response> Handle(RegistrarCuentaDto request, CancellationToken cancellationToken)
+        {
             var nuevacuenta = new Cuenta()
             {
-                Clasificacion = request.Clasificacion,
-                Concepto = request.Concepto,
+                Clasificacioncuenta = request.Clasificacion.Value,
+                Concepto = request.Concepto.Value,
                 Descripcion = request.Descripcion,
                 CodigoCuenta = request.CodigoCuenta,
                 Id = Guid.NewGuid(),
             };
 
 
-            _unitOfWork.GenericRepository<Cuenta>().Add (nuevacuenta);
-            _unitOfWork.Commit ();
-            return Task.FromResult (new Response {
+            _unitOfWork.GenericRepository<Cuenta>().Add(nuevacuenta);
+            _unitOfWork.Commit();
+            return Task.FromResult(new Response
+            {
                 Data = nuevacuenta,
-                    Mensaje = $"La cuenta {request.CodigoCuenta} con descripción {request.Descripcion} se registró correctamente."
+                Mensaje = $"La cuenta {request.CodigoCuenta} con descripción {request.Descripcion} se registró correctamente."
             });
         }
     }
@@ -42,8 +46,8 @@ namespace Application.Servicios.Cuentas
     {
         public string? Descripcion { get; set; }
         public string? CodigoCuenta { get; set; }
-        public virtual Concepto Concepto { get; set; }
-        public virtual Clasificacion Clasificacion { get; set; }
+        public virtual ConceptoCuenta? Concepto { get; set; }
+        public virtual ClasificacionCuenta? Clasificacion { get; set; }
     }
     public class RegistrarCuentaDtoValidator : AbstractValidator<RegistrarCuentaDto>
     {
@@ -60,8 +64,8 @@ namespace Application.Servicios.Cuentas
             RuleFor(e => e.Descripcion).NotEmpty().Length(5, 50);
             RuleFor(e => e.CodigoCuenta).Must(NoExisteCuenta).WithMessage("La cuenta que " +
                 "intenta registrar ya existe.");
-            RuleFor(e => e.Concepto).NotEmpty();
-            RuleFor(e => e.Clasificacion).NotEmpty();
+            RuleFor(e => e.Concepto).NotNull();
+            RuleFor(e => e.Clasificacion).NotNull();
         }
         private bool NoExisteCuenta(string CodigoCuenta)
         {

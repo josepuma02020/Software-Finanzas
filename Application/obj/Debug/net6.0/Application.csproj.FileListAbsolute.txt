@@ -1,0 +1,5 @@
+C:\Sistema Finanzas\Application\obj\Debug\net6.0\Application.csproj.AssemblyReference.cache
+C:\Sistema Finanzas\Application\obj\Debug\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sistema Finanzas\Application\obj\Debug\net6.0\Application.AssemblyInfoInputs.cache
+C:\Sistema Finanzas\Application\obj\Debug\net6.0\Application.AssemblyInfo.cs
+C:\Sistema Finanzas\Application\obj\Debug\net6.0\Application.csproj.CoreCompileInputs.cache

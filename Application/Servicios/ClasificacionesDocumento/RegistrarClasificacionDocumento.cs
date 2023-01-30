@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Domain.Extensions;
 using FluentValidation;
 using MediatR;
 using System;
@@ -25,25 +26,28 @@ namespace Application.Servicios.ClasificacionesDocumento
         {
             var nuevaclasificacion = new ClasificacionDocumento()
             {
-            
-            Id = Guid.NewGuid(),
+                Descripcion = request.Descripcion,
+                Id = Guid.NewGuid(),
+                ClasificacionProceso = request.ClasificacionProceso.Value,
             };
-
 
             _unitOfWork.GenericRepository<ClasificacionDocumento>().Add(nuevaclasificacion);
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
                 Data = nuevaclasificacion,
-                Mensaje = $"La usuario {request.Nombre}  se registró correctamente."
+                Mensaje = $"La clasificacion de documento se ha registrado correctamente."
             });
         }
     }
     public class RegistrarClasificacionDocumentoDto : IRequest<Response>
     {
-        public string Identificacion { get; set; }
-        public string Nombre { get; set; }
-        public string Email { get; set; }
+        public string Descripcion { get; set; }
+        public ProcesosDocumentos ? ClasificacionProceso { get; set; }
+        public RegistrarClasificacionDocumentoDto()
+        {
+
+        }
     }
     public class RegistrarClasificacionDocumentoDtoValidator : AbstractValidator<RegistrarClasificacionDocumentoDto>
     {
@@ -56,9 +60,8 @@ namespace Application.Servicios.ClasificacionesDocumento
 
         private void SetUpValidators()
         {
-            RuleFor(e => e.Nombre).NotEmpty().Length(4, 15).WithMessage("El nombre del Usuario debe tener mas de 4 caracteres");
-            RuleFor(e => e.Email).NotEmpty().WithMessage("El campo Email, es obligatorio");
-            RuleFor(e => e.Identificacion).NotEmpty().WithMessage("El campo Identificacion, es obligatorio"); ;
+            RuleFor(e => e.ClasificacionProceso).NotNull();
+            RuleFor(e => e.Descripcion).NotEmpty().Length(5, 20).WithMessage("La descripcion es muy corta"); ;
         }
 
     }

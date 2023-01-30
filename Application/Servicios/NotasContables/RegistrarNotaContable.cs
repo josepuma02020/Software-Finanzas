@@ -25,14 +25,15 @@ namespace Application.Servicios.NotasContables
         }
         public Task<Response> Handle(RegistrarNotaContableDto request, CancellationToken cancellationToken)
         {
+            var clasificacion = Validator.ClasificacionDocumento;
             var nuevanotacontable = new NotaContable()
             {
                Comentario= request.Comentario,
                Importe=request.Importe,
-               Registrosnota=request.Registrosnota,
-               Tiponotacontable=request.Tiponotacontable,
-               ClasificacionDocumento=request.ClasificacionDocumento,
-                Id = Guid.NewGuid(),
+               Tiponotacontable=request.Tiponotacontable.Value,
+               ClasificacionDocumento= clasificacion,
+               ProcesoDocumento = request.Proceso.Value,
+               Id = Guid.NewGuid(),
             };
 
 
@@ -47,18 +48,25 @@ namespace Application.Servicios.NotasContables
     }
     public class RegistrarNotaContableDto : IRequest<Response>
     {
-
-
         public string Comentario { get; set; }
         public int Importe { get; set; }
-        public ClasificacionDocumento ClasificacionDocumento { get; set; }
-        public List<Registrosdenotacontable> Registrosnota { get; set; }
-        public virtual Tiponotacontable Tiponotacontable { get; set; }
+        public ProcesosDocumentos ? Proceso { get; set; }
+        public Guid ClasificacionDocumentoId { get; set; }
+        public  Tiponotacontable ? Tiponotacontable { get; set; }
+        public  Guid TipoDocumentoId { get; set; }
+        public RegistrarNotaContableDto()
+        {
+
+        }
 
     }
     public class RegistrarNotaContableDtoValidator : AbstractValidator<RegistrarNotaContableDto>
     {
         private readonly IUnitOfWork _unitOfWork;
+
+        public ClasificacionDocumento ClasificacionDocumento;
+
+        public TipoDocumento TipoDocumento;
         public RegistrarNotaContableDtoValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -67,16 +75,24 @@ namespace Application.Servicios.NotasContables
 
         private void SetUpValidators()
         {
-            RuleFor(e => e.ClasificacionDocumento).NotEmpty().WithMessage("Debe seleccionar una clasificacion para la nota contable.");
+            RuleFor(bdu => bdu.Proceso).NotNull().WithMessage("No se encontro proceso para vincular el documento");
+            RuleFor(bdu => bdu.Tiponotacontable).NotNull().WithMessage("No se encontro concepto de cuenta");
+            RuleFor(bdu => bdu.ClasificacionDocumentoId).Must(ExisteClasificacionDocumento).WithMessage($"La cuenta suministrada no fue encontrada en el sistema.");
             RuleFor(e => e.Tiponotacontable).NotEmpty().WithMessage("Debe seleccionar el tipo de nota contable.");
             RuleFor(e => e.Importe).NotEmpty().GreaterThanOrEqualTo(1000).WithMessage("El valor del importe debe ser mayor a 1000.");
-
+            RuleFor(bdu => bdu.TipoDocumentoId).Must(ExsiteTipoDocumento).WithMessage($"No se encontro el tipo de documento en el sistema.");
         }
-        private bool NoExisteCuenta(string CodigoCuenta)
+        private bool ExisteClasificacionDocumento(Guid id)
         {
-            Cuenta CuentaBuscada = _unitOfWork.GenericRepository<Cuenta>()
-                .FindFirstOrDefault(e => e.CodigoCuenta == CodigoCuenta);
-            return CuentaBuscada != null;
+             ClasificacionDocumento = _unitOfWork.GenericRepository<ClasificacionDocumento>()
+                .FindFirstOrDefault(e => e.Id == id);
+            return ClasificacionDocumento != null;
+        }
+        private bool ExsiteTipoDocumento(Guid id)
+        {
+            TipoDocumento = _unitOfWork.GenericRepository<TipoDocumento>()
+               .FindFirstOrDefault(e => e.Id == id);
+            return TipoDocumento != null;
         }
     }
 }
