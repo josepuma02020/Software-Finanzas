@@ -1,5 +1,5 @@
-﻿using Domain.Clases;
-using Domain.Contracts;
+﻿using Domain.Contracts;
+using Domain.Documentos;
 using FluentValidation;
 using MediatR;
 using System;

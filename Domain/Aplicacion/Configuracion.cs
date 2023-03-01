@@ -1,4 +1,5 @@
-﻿using Domain.Base;
+﻿using Domain.Aplicacion.EntidadesConfiguracion;
+using Domain.Base;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,37 +12,39 @@ namespace Domain.Aplicacion
 {
     public class Configuracion : Entity<Guid>
     {
-        public int Salariominimo { get; set; }
-        public DateTime? Fechafinal { get; set; }
-        public Usuario UsuarioqueConfiguro { get; set; }
-        public Configuracion(int nuevosalariominimo, Usuario usuarioqueConfiguro)
+        public long Salariominimo { get; set; }
+        public int MultiploRevisarNotaContable { get; set; }
+        public int Año {get;set;}
+        public Configuracion() : base(null)
+        {
+
+        }
+        public Configuracion(Usuario? usuariocreador) : base(usuariocreador) { }
+        public Configuracion(long nuevosalariominimo, Usuario? usuarioqueConfiguro):base(usuarioqueConfiguro)
         {
             Salariominimo = nuevosalariominimo;
-            UsuarioqueConfiguro = usuarioqueConfiguro;
-        }
-        public Configuracion SetFechaCierre(DateTime fechacierre)
-        {
-            Fechafinal = fechacierre;
-            return this;
         }
     }
-    public class ConfiguracionProceso : Entity<Guid>
+    public class ConfiguracionProcesoNotasContables : Entity<Guid>
     {
-        public DateTime? Fechacierre { get; set; }
-        public Configuracion Configuraciongeneral { get; set; }
-        public ProcesosDocumentos Procesoconfiguracion { get; set; }
-        public Usuario UsuarioConfiguro { get; set; }
-        public ConfiguracionProceso(Configuracion configuraciongeneral, ProcesosDocumentos procesoconfiguracion,Usuario usuarioconfiguro)
+        public DateTime? FechaCierre { get; set; }
+        public int Mes { get; set; }
+        public int Año { get; set; }
+        public Proceso ProcesoNotaContable { get; set; }
+        public Guid ProcesoId { get; set; }
+        public Guid? IdUsuarioConfiguro { get; set; }
+        public Usuario? UsuarioConfiguro { get; set; }
+        public ConfiguracionProcesoNotasContables() : base(null) { }
+        public ConfiguracionProcesoNotasContables(int mes,int año,Usuario? usuariocreador):base(usuariocreador)
         {
-            Configuraciongeneral = configuraciongeneral;
-            Procesoconfiguracion = procesoconfiguracion;
-            UsuarioConfiguro = usuarioconfiguro;
+            Mes = mes;Año =año;
         }
-        public ConfiguracionProceso SetFechaCierre(DateTime fechacierre)
+        public ConfiguracionProcesoNotasContables(int mes, int año, Usuario? usuariocreador,Proceso proceso) : base(usuariocreador)
         {
-            Fechacierre = fechacierre;
-            return this;
+            ProcesoNotaContable = proceso;ProcesoId = proceso.Id;
+            Mes = mes; Año = año;
         }
+
     }
 
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Aplicacion\Entidades\CuentasContables\CuentasContablesxConceptos\" />
     <Folder Include="Contracts\" />
   </ItemGroup>
 

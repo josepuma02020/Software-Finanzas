@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class AppFile : Entity<Guid>
     {
-        public AppFile(AppFileBuilder appFileBuilder)
+        public AppFile(AppFileBuilder appFileBuilder,Usuario usuariocreador):base(usuariocreador)
         {
             Path = appFileBuilder.Path;
             Nombre = appFileBuilder.Nombre;
@@ -17,7 +17,17 @@ namespace Domain.Entities
         }
         public string Path { get; set; }
         public string Nombre { get; set; }
+
+        public Guid DocumentoId { get; set; }
         public Usuario UsuarioQueCargoElArchivo { get; set; }
+        private AppFile() : base( null)
+        {
+
+        }
+        public AppFile(Usuario usuariocreador) : base(usuariocreador)
+        {
+
+        }
         public class AppFileBuilder
         {
             public string Path { get; set; }
@@ -40,7 +50,7 @@ namespace Domain.Entities
             }
             public AppFile Build()
             {
-                AppFile appFile = new AppFile(this);
+                AppFile appFile = new AppFile(this,null);
                 return appFile;
             }
         }

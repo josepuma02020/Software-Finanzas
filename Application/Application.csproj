@@ -9,14 +9,12 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.4.0" />
     <PackageReference Include="MediatR" Version="11.1.0" />
+	<PackageReference Include="Microsoft.Extensions.Options" Version="3.1.6" />
+	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Bases\" />
   </ItemGroup>
 
 </Project>

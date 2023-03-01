@@ -1,5 +1,7 @@
 ﻿using Domain.Base;
 using Domain.Contracts;
+using Domain.Repositories;
+using Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,11 @@ namespace Infraestructure.Base
     {
         private IDbContext _dbContext;
 
+        public INotaContableRepository _notacontablerepository;
+
+        public IFacturaRepository _facturarepository;
+
+        public IUsuarioRepository _usuarioRepository;
         public UnitOfWork(IDbContext context)
         {
             _dbContext = context;
@@ -22,7 +29,18 @@ namespace Infraestructure.Base
         {
             return new GenericRepository<T>(_dbContext);
         }
-
+        public INotaContableRepository NotaContableRepository
+        {
+            get { return _notacontablerepository ?? (_notacontablerepository = new NotaContableRepository(_dbContext)); }
+        }
+        public IFacturaRepository FacturaRepository
+        {
+            get { return _facturarepository ?? (_facturarepository = new FacturaRepository(_dbContext)); }
+        }
+        public IUsuarioRepository UsuarioRepository
+        {
+            get { return _usuarioRepository ?? (_usuarioRepository = new UsuarioRepository(_dbContext)); }
+        }
         public int Commit()
         {
             return _dbContext.SaveChanges();

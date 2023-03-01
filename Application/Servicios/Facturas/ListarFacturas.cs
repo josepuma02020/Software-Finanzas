@@ -1,5 +1,5 @@
 ﻿using Domain.Contracts;
-using Domain.Entities;
+using Domain.Documentos;
 using MediatR;
 using System;
 using System.Collections.Generic;

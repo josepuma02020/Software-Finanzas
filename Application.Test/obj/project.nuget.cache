@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "R69GYN+1YkHgzPD3FZWWNdyYA8LB+pLopwagllPlKDes20QqJYknLCpDXvh8eiIUZRx+WPTqCc9YKFWYy/T8RA==",
+  "dgSpecHash": "aB8y9rz2nI18UxdwX5ucVT6ivqLOAzi0rWYsvynNIkNMfpD7kqLHp1C8j4E/9MbWXF+tVYuC87SEi/2YJdl81g==",
   "success": true,
   "projectFilePath": "C:\\Sistema Finanzas\\Application.Test\\Application.Test.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
     "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.0.1\\mediatr.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
     "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",
     "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

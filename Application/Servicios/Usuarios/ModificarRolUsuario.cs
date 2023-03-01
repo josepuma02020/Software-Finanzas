@@ -24,34 +24,34 @@ namespace Application.Servicios.Usuarios
         public Task<Response> Handle(ModificarRoleDeUsuarioDto request, CancellationToken cancellationToken)
         {
             var user = _validator.Usuario;
-            Rol roleAntiguo = user.Rol;
-            _unitOfWork.GenericRepository<Usuario>().Edit(user.SetRole(request.Role.Value));
+            _unitOfWork.GenericRepository<Usuario>().Edit(user.SetRole(request.Role));
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
-                Mensaje = $"Se ha realizado el cambio con éxito" +
-                $" de {roleAntiguo.GetDescription()} a {request.Role.GetDescription()}"
+                Mensaje = $"El rol de usuario se ha cambiado correctamente."
             });
         }
     }
     public class ModificarRoleDeUsuarioDto : IRequest<Response>
     {
         public Guid UsuarioId { get; set; }
-        public Rol ? Role { get; set; }
+        public Rol   Role { get; set; }
+        public Guid IdUsuarioAdmin { get; set; } 
         public ModificarRoleDeUsuarioDto()
         {
 
         }
-        public ModificarRoleDeUsuarioDto(Guid id, Rol rol)
+        public ModificarRoleDeUsuarioDto(Guid id, Rol rol,Guid idUsuarioAdmin)
         {
             UsuarioId = id;
+            IdUsuarioAdmin = idUsuarioAdmin;
             Role = rol;
         }
     }
     public class ModificarRoleDeUsuarioDtoValidator : AbstractValidator<ModificarRoleDeUsuarioDto>
     {
         private readonly IUnitOfWork _unitOfWork;
-
+        public Usuario UsuarioAdmin { get; set; }
         public Usuario Usuario { get; private set; }
 
         public ModificarRoleDeUsuarioDtoValidator(IUnitOfWork unitOfWork)
@@ -62,9 +62,22 @@ namespace Application.Servicios.Usuarios
 
         private void SetUpValidators()
         {
-            RuleFor(bdu => bdu.Role).NotNull().WithMessage("No se encontro el nuevo rol para usuario.");
-            RuleFor(bdu => bdu.UsuarioId).Must(ExistirUsuario).WithMessage($"El usuario suministrado no" +
-               $" fué localizado en el sistema.");
+            RuleFor(bdu => bdu.Role).Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("Debe seleccionar el nuevo rol de usuario.")
+                .NotNull().WithMessage("Debe seleccionar el nuevo rol de usuario.");
+
+            RuleFor(bdu => bdu.UsuarioId).Cascade(CascadeMode.StopOnFirstFailure)
+            .NotEmpty().WithMessage("El id de usuario es obligatorio.")
+            .Must(ExistirUsuario).WithMessage($"El usuario suministrado no fué localizado en el sistema.");
+
+            RuleFor(bdu => bdu.IdUsuarioAdmin).Cascade(CascadeMode.StopOnFirstFailure)
+            .NotEmpty().WithMessage("El id de usuario administrador es obligatorio.")
+            .Must(ExistirUsuario).WithMessage($"El usuario administrador suministrado no fué localizado en el sistema.")
+            .Must(RolUsuario).WithMessage($"El usuario administrador suministrado no tiene permiso para asignar roles.");
+        }
+        private bool RolUsuario(Guid id)
+        {
+            if (Usuario.Rol == Rol.Administrador) return true; else return false;
         }
         private bool ExistirUsuario(Guid id)
         {
