@@ -16,3 +16,42 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+.navbar {
+  transition: box-shadow 0.5s ease;
+}
+
+  .navbar.scrolled {
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  }
+
+.navbar {
+  transition: opacity 0.5s ease;
+}
+
+  .navbar.scrolled {
+    opacity: 0.9;
+  }
+
+a[href^="#"] {
+  transition: all 0.5s ease;
+}
+
+  a[href^="#"]:hover {
+    color: #fff;
+    background-color: #007bff;
+  }
+
+  a[href^="#"]:not(.navbar-brand) {
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+    a[href^="#"]:not(.navbar-brand):hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(0,0,0,.2);
+    }
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
