@@ -1,69 +1,115 @@
-<h1>Formulario de Notas Contables por  Registro!</h1>
+<h1>Formulario de Notas por registro</h1>
 
-<div class="formularioNotaContablePorRegistro">
-  <h2>Nuevo Registro</h2>
+<div class="container">
 
-  <form>
+  <div class="navbar-brand">
     <div>
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre">
+      <label for="idDocumento">Documento:</label>
+      <input type="number" class="form-control" id="idDocumento" placeholder="idDocumento">
     </div>
-
+  </div>
+  <div class="navbar-brand">
     <div>
-      <label for="apellido">Apellido:</label>
-      <input type="text" id="apellido" name="apellido">
+      <label for="FechaCreacion">Fecha de Creacion:</label>
+      <input type="date" class="form-control" id="FechaCreacion" placeholder="FechaCreacion">
     </div>
-
+  </div>
+  <div class="navbar-brand">
     <div>
-      <label for="edad">Edad:</label>
-      <input type="number" id="edad" name="edad">
+      <label for="Batch">Batch:</label>
+      <input type="number" class="form-control" id="Batch" placeholder="Batch">
     </div>
-
-    <div>
-      <label for="genero">Género:</label>
-      <select id="genero" name="genero">
-        <option value="masculino">Masculino</option>
-        <option value="femenino">Femenino</option>
-        <option value="otro">Otro</option>
-      </select>
-    </div>
-
-    <div>
-      <button type="submit">Guardar</button>
-      <button type="reset">Borrar</button>
-    </div>
-  </form>
-
-  <h2>Registros</h2>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Edad</th>
-        <th>Género</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Juan</td>
-        <td>Pérez</td>
-        <td>30</td>
-        <td>Masculino</td>
-      </tr>
-      <tr>
-        <td>María</td>
-        <td>González</td>
-        <td>25</td>
-        <td>Femenino</td>
-      </tr>
-      <tr>
-        <td>Pablo</td>
-        <td>Rodríguez</td>
-        <td>40</td>
-        <td>Masculino</td>
-      </tr>
-    </tbody>
-  </table>
+  </div>
 </div>
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <h2>Informacion del empleado</h2>
+  <div class="container">
+    <div class="navbar-brand">
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" placeholder="nombre">
+      </div>
+    </div>
+    <div class="navbar-brand">
+      <div>
+        <label for="correo">Correo:</label>
+        <input type="email" class="form-control" id="correo" placeholder="correo">
+      </div>
+    </div>
+    <div class="navbar-brand">
+      <div>
+        <label for="departamento">Departamento:</label>
+        <input type="text" class="form-control" id="departamento" placeholder="departamento">
+      </div>
+    </div>
+  </div>
+
+  <h2>Informacion del registro contable</h2>
+  <div class="container">
+    <div class="navbar-brand">
+      <div>
+        <label for="proceso">Proceso:</label>
+        <select type="text" class="form-control" id="proceso" placeholder="proceso">
+          <option value="opcion1">Opción 1</option>
+          <option value="opcion2">Opción 2</option>
+          <option value="opcion3">Opción 3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="navbar-brand">
+      <div>
+        <label for="tipoDocumento">Tipo de documento:</label>
+        <select type="tipoDocumento" class="form-control" id="tipoDocumento" placeholder="tipoDocumento">
+          <option value="opcion1">Opción 1</option>
+          <option value="opcion2">Opción 2</option>
+          <option value="opcion3">Opción 3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="navbar-brand">
+      <div>
+        <label for="clasificacion">Clasificación:</label>
+        <select type="clasificacion" class="form-control" id="clasificacion" placeholder="clasificacion">
+          <option value="opcion1">Opción 1</option>
+          <option value="opcion2">Opción 2</option>
+          <option value="opcion3">Opción 3</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <h2>Aprobacion y autorizacion de registro contable</h2>
+
+  <div class="container">
+
+    <div class="navbar-brand">
+      <div>
+        <label for="aprobador">Aprobado Por:</label>
+        <input type="text" class="form-control" id="aprobador" placeholder="aprobador">
+      </div>
+    </div>
+
+    <div class="navbar-brand">
+      <div>
+        <label for="autorizador">Autorizado Por:</label>
+        <input type="text" class="form-control" id="autorizador" placeholder="autorizador">
+      </div>
+    </div>
+
+    <div class="navbar-brand">
+      <div>
+        <label for="correo">Correo:</label>
+        <input type="email" class="form-control" id="correo" placeholder="correo">
+      </div>
+    </div>
+
+    <div>
+      <button>Guardar</button>
+    </div>
+    <div>
+      <button>Limpiar</button>
+    </div>
+  </div>
+</form>
