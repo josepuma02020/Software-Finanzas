@@ -8,19 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\": {}
+    "C:\\Users\\JHON\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Sistema Finanzas\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Sistema Finanzas\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\",
-      "outputPath": "C:\\Sistema Finanzas\\Domain\\obj\\",
+      "projectPath": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\JHON\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Domain\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\JOSE PUMAREJO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JHON\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
