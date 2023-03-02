@@ -19,8 +19,8 @@ namespace Domain.Documentos
 {
     public class NotaContable : BaseEntityDocumento
     {
-        public bool EditarNota { get; set; }
-        public bool EditarRegistros { get; set; }
+        public bool RevisionesFinanciacion { get; set; }
+        public bool RevisionesGestionContable { get; set; }
         public DateTime? Fechabatch { get; set; }
         public DateTime? FechaNota { get; set; }
         public string? Batch { get; set; }
@@ -29,18 +29,17 @@ namespace Domain.Documentos
         public ClasificacionDocumento ClasificacionDocumento { get; set; }
         public Guid ClasificacionDocumentoId => ClasificacionDocumento.Id;
         public string DescripcionClasificacionDocumento => ClasificacionDocumento.Descripcion;
-        public List<Registrodenotacontable>? Registrosnota { get; set; }
+        public List<Registrodenotacontable> Registrosnota { get; set; }
         public long SalarioMinimoVigente { get; set; }
         public Proceso Proceso { get; set; }
         public Guid? ProcesoId { get; set; }
         public Equipo Equipo { get; set; }
         public Guid EquipoId { get; set; }
-
         public bool revisable { get; set; }
         public virtual Tiponotacontable Tiponotacontable { get; set; }
         public virtual TipoDocumento TipoDocumento { get; set; }
-        public Guid TipoDocumentoId => TipoDocumento.Id;
-        public string TipoEntidadNombre => Tiponotacontable == Tiponotacontable.Soportes ? "Soportes" : "registrosnota";
+        public Guid TipoDocumentoId { get; set; }
+        public string TiponotacontableDescripcion => Tiponotacontable == Tiponotacontable.Soportes ? "Soportes" : "registrosnota";
         #region Metodos
         private NotaContable() : base(null)
         {
@@ -48,6 +47,7 @@ namespace Domain.Documentos
         }
         public NotaContable(Usuario? usuariocreador):base(usuariocreador)
         {
+            Registrosnota = new List<Registrodenotacontable>();
             ProcesoDocumento = ProcesosDocumentos.NotasContable;
         }
        public NotaContable EditarNotaContable(NotaContable edicionnotacontable)
@@ -211,16 +211,18 @@ namespace Domain.Documentos
     {
         Soportes,
         registrosnota,
+        Concepto,
     }
     public class Registrodenotacontable : Entity<Guid>
     {
        
         public DateTime? Fecha { get; set; }
         public long Importe { get; set; }
-        public string? Tipolm => LM != null ? "A":null;
-        public string? LM { get; set; }
-        public Tercero Tercero { get; set; }
-        public Guid TerceroId { get; set; }
+        public string? Tipolm => TerceroLM != null ? "A":null;
+        public Tercero? TerceroLM { get; set; }
+        public Guid? TerceroLMId { get; set; }
+        public Tercero TerceroAN8 { get; set; }
+        public Guid TerceroAN8Id { get; set; }
         public Guid CuentaContableId { get; set; }
         public CuentaContable CuentaContable { get; set; }
         public Guid NotaContableId { get; set; }
@@ -231,9 +233,10 @@ namespace Domain.Documentos
         public Registrodenotacontable(Usuario? usuariocreador) : base(usuariocreador)
         {
         }
-        public Registrodenotacontable(Usuario usuariocreador,Tercero tercero,CuentaContable cuentacontable,NotaContable notacontable) : base(usuariocreador)
+        public Registrodenotacontable(Usuario usuariocreador,Tercero terceroan8,Tercero? tercerolm,CuentaContable cuentacontable,NotaContable notacontable) : base(usuariocreador)
         {
-            Tercero = tercero;TerceroId = tercero.Id;
+            TerceroAN8 = terceroan8; TerceroAN8Id = terceroan8.Id;
+            TerceroLM = tercerolm;TerceroLMId = tercerolm?.Id;
             CuentaContable = cuentacontable;CuentaContableId = cuentacontable.Id;
             NotaContable = notacontable;NotaContableId = notacontable.Id;
         }

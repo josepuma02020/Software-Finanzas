@@ -8,8 +8,11 @@ namespace Domain.Documentos.ConfiguracionDocumentos
     {
         
 
-        public string? CodigoTipoDocumento { get; set; }
-        public string? DescripcionTipoDocumento { get; set; }
+        public string CodigoTipoDocumento { get; set; }
+        public string DescripcionTipoDocumento { get; set; }
+        #region Configuracion
+        public IEnumerable<NotaContable> NotasContables { get; set; }
+        #endregion
         private TipoDocumento() : base(null)
         {
         }

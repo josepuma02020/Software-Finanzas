@@ -1,4 +1,5 @@
 ﻿using Domain.Base;
+using Domain.Documentos;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         public List<Proceso>? Procesos { get; set; }
         #region Configuracion
         public IEnumerable<Proceso> ProcesosdeEquipos { get; set; }
+        public IEnumerable<NotaContable> NotasContables { get; set; }
         #endregion
         public Equipo() : base(null)
         {
@@ -66,6 +68,7 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
 
         #region Configuracion
         public IEnumerable<Usuario> Usuarios { get; set; }
+        public IEnumerable<NotaContable> NotasContables { get; set; }
 
         #endregion
         public Proceso() : base(null)

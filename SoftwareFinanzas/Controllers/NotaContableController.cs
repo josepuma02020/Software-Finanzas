@@ -3,16 +3,19 @@ using Domain.Contracts;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SoftwareFinanzas.Controllers
+namespace Infraestructure.Configuration.ConfigUsuarios
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsuarioController : ControllerBase
+    public class NotaContableController
     {
         private readonly IMediator _mediater;
         private readonly IUnitOfWork _unitOfWork;
-        public UsuarioController(IMediator mediator,IUnitOfWork unitOfWork)
+        public NotaContableController(IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mediater = mediator;
             _unitOfWork = unitOfWork;
@@ -20,7 +23,7 @@ namespace SoftwareFinanzas.Controllers
         [HttpGet]
         public IEnumerable<Usuario> Get()
         {
-            return _unitOfWork.UsuarioRepository.FindBy(includeProperties:"Rol");
+            return _unitOfWork.NotaContableRepository.FindBy(includeProperties: "Rol");
         }
         [HttpPost]
         public IActionResult Post(RegistrarUsuarioDto usuarioDto)

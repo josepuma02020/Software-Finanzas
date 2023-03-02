@@ -31,8 +31,11 @@ namespace Domain.Entities
         #region Configuracion de relaciones
         #region ConfiguracionGeneral
         public IEnumerable<Configuracion> ConfiguracionesCreadas { get; set; }
+        public IEnumerable<BaseEntity> EntityCreadas { get; set; }
+        public IEnumerable<BaseEntity> EntityEditadas { get; set; }
         #endregion
         #region Areas
+        public IEnumerable<BaseCuenta> CuentasCreadas { get; set; }
         public IEnumerable<Area> AreasCreadas { get; set; }
         public IEnumerable<Area> AreasEditadas { get; set; }
         public IEnumerable<Equipo> EquiposCreados { get; set; }

@@ -148,14 +148,15 @@ namespace Domain.Documentos
     {
         public string Concepto { get; set; }
         public string? Descripcion { get; set; }
-        private ConceptoFactura() : base(null)
+        public ConceptoFactura() : base(null)
         {
 
         }
         public ConceptoFactura(Usuario? usuariocreador):base(usuariocreador)
         {
-
+             
         }
+        public IEnumerable<Factura> Facturas { get; set; }
     }
     public class CuentasBancariasxFactura : Entity<Guid>
     {

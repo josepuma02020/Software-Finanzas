@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Documentos
 {
-    public class SaldosDiarios : BaseEntityDocumento
+    public class Saldos : BaseEntityDocumento
     {
         public CuentaBancaria CuentaBancaria { get; set; }
         public Guid CuentaBancariaId { get; set; }
@@ -19,15 +19,15 @@ namespace Domain.Documentos
         public long SaldoTotal { get; set; }
         public long? SaldoDisponible { get; set; }
         public bool TieneDisponible { get; set; }
-        private SaldosDiarios() : base(null)
+        private Saldos() : base(null)
         {
             ProcesoDocumento = ProcesosDocumentos.SaldosDiarios;
         }
-        public SaldosDiarios(Usuario usuariocreado):base(usuariocreado)
+        public Saldos(Usuario usuariocreado):base(usuariocreado)
         {
             ProcesoDocumento = ProcesosDocumentos.SaldosDiarios;
         }
-        public SaldosDiarios(Usuario usuariocreado,CuentaBancaria cuentaBancaria) : base(usuariocreado)
+        public Saldos(Usuario usuariocreado,CuentaBancaria cuentaBancaria) : base(usuariocreado)
         {
             ProcesoDocumento = ProcesosDocumentos.SaldosDiarios;
             CuentaBancaria = cuentaBancaria;

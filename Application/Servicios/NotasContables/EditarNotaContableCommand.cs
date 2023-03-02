@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Application.Servicios.Bases;
 using System.Runtime.CompilerServices;
 using Domain.Aplicacion.EntidadesConfiguracion;
+using Application.Servicios.NotasContables.FilasdeNotaContable;
+using Domain.Aplicacion.Entidades.CuentasContables;
 
 namespace Application.Servicios.NotasContables
 {
@@ -30,7 +32,33 @@ namespace Application.Servicios.NotasContables
         public Task<Response> Handle(EditarNotaContableDto request, CancellationToken cancellationToken)
         {
             var notacontable = Validator.NotaContable;
+            #region registrarFilasdeNotaContable
+            var ListaRegistros = new List<Registrodenotacontable>();
+            if (request.Tiponotacontable == Tiponotacontable.Concepto && request.Tiponotacontable == Tiponotacontable.registrosnota)
+            {
+                foreach (var item in request.FilasdeNotaContable)
+                {
+                    Tercero tercerolm = default;
+                    var terceroAn8 = _unitOfWork.GenericRepository<Tercero>().FindFirstOrDefault(e => e.Id == item.TerceroId);
+                    if (item.TerceroLMId != null) { tercerolm = _unitOfWork.GenericRepository<Tercero>().FindFirstOrDefault(e => e.Id == item.TerceroLMId); }
+                    var cuentaContable = _unitOfWork.GenericRepository<CuentaContable>().FindFirstOrDefault(e => e.Id == item.CuentaContableId);
+                    var usuario = _unitOfWork.UsuarioRepository.FindFirstOrDefault(e => e.Id == item.UsuarioId);
+
+                    var nuevoregistro = new Registrodenotacontable(usuario, terceroAn8, tercerolm, cuentaContable, notacontable)
+                    {
+                        Fecha = item.Fecha,
+                        Importe = item.Importe,
+                        Id = Guid.NewGuid(),
+                    };  
+                    ListaRegistros.Add(nuevoregistro);
+                }
+                notacontable.SetRegistrosNotaContable(ListaRegistros);
+            }
+            #endregion
+            
             _unitOfWork.GenericRepository<NotaContable>().Edit(notacontable.EditarNotaContable(notacontable));
+
+            
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
@@ -43,6 +71,7 @@ namespace Application.Servicios.NotasContables
         public string? Comentario { get; set; }
         public DateTime? FechaNota { get; set; }
         public long Importe { get; set; }
+        public List<RegistrarFilaNotaContableDto>? FilasdeNotaContable { get; set; }
         public Guid ClasificacionDocumentoId { get; set; }
         public Tiponotacontable Tiponotacontable { get; set; }
         public Guid TipoDocumentoId { get; set; }

@@ -206,7 +206,7 @@ namespace Application.Test.NotasContables
         }
 
         [TestCaseSource("DataTestFails")]
-        public void EditarNotaContableDatosInvalidos(Guid notacontableid,Guid usuarioId, Guid procesoId, long importe, Guid clasificacionDocumentoId, Tiponotacontable tiponotacontable, Guid tipoDocumentoId, string esperado)
+        public void EditarNotaContableDatosInvalidos(Guid usuarioId, Guid procesoId, long importe, Guid clasificacionDocumentoId, Tiponotacontable tiponotacontable, Guid tipoDocumentoId, string esperado)
         {
 
             var validator = new EditarNotaContableDtoValidator(_unitOfWork);
@@ -217,7 +217,6 @@ namespace Application.Test.NotasContables
                 Tiponotacontable = tiponotacontable,
                 TipoDocumentoId = tipoDocumentoId,
                 Importe = importe,
-                NotaContableId=notacontableid,
                 ProcesoId = procesoId,
                 IdUsuarioEditor= usuarioId,
             });
@@ -226,43 +225,34 @@ namespace Application.Test.NotasContables
         }
         private static IEnumerable<TestCaseData> DataTestFails()
         {
-            yield return new TestCaseData(IdNotaContableAbierta,IdGenerica, IdGenerica, null, IdGenerica, Tiponotacontable.Soportes, IdGenerica,
+            yield return new TestCaseData(IdGenerica, IdGenerica, null, IdGenerica, Tiponotacontable.Soportes, IdGenerica,
               "El valor del importe es obligatorio.").SetName("Request con valor nulo.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, IdGenerica, IdGenerica, 999, IdGenerica, Tiponotacontable.Soportes, IdGenerica,
+            yield return new TestCaseData( IdGenerica, IdGenerica, 999, IdGenerica, Tiponotacontable.Soportes, IdGenerica,
               "El valor del importe debe ser mayor a 1000.").SetName("Request con valor menor.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, IdGenerica, IdGenerica, 100000, Guid.NewGuid(), Tiponotacontable.registrosnota, IdGenerica,
+            yield return new TestCaseData( IdGenerica, IdGenerica, 100000, Guid.NewGuid(), Tiponotacontable.registrosnota, IdGenerica,
               "La clasificación suministrada no fue encontrada en el sistema.").SetName("Request con clasificacion erronea.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, IdGenerica, IdGenerica, 10000, null, Tiponotacontable.registrosnota, IdGenerica,
+            yield return new TestCaseData( IdGenerica, IdGenerica, 10000, null, Tiponotacontable.registrosnota, IdGenerica,
               "La clasificación de la nota contable es obligatoria.").SetName("Request con clasificacion nula.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, null,
+            yield return new TestCaseData( IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, null,
               "El tipo de documento es obligatorio.").SetName("Request con tipo documento nula.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, Guid.NewGuid(),
+            yield return new TestCaseData(  IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, Guid.NewGuid(),
               "No se encontro el tipo de documento en el sistema.").SetName("Request con tipo documento erronea.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, Guid.NewGuid(), IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
+            yield return new TestCaseData( Guid.NewGuid(), IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
               "El usuario suministrado no fue encontrado en el sistema.").SetName("Request con usuario no existente.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, null, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
+            yield return new TestCaseData(null, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
               "El id del usuario creador es obligatorio.").SetName("Request con usuario nulo.");
 
-            yield return new TestCaseData(IdNotaContableAbierta, IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.Soportes, IdGenerica,
+            yield return new TestCaseData( IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.Soportes, IdGenerica,
               "No se encontro configuracion de para comparar importe.").SetName("Request con configuracion nula.");
 
-            yield return new TestCaseData(null, IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
-              "La nota contable a editar es obligatoria.").SetName("Request con nota contable nula.");
-
-            yield return new TestCaseData(Guid.NewGuid(), IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
-              "La nota contable suministrada no fue encontrada en el sistema.").SetName("Request con nota contable inexistente.");
-
-            yield return new TestCaseData(IdNotaContableCerrada, IdGenerica, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
-              "La nota contable no esta disponible para ediciones.").SetName("Request con nota contable estado cerrado.");
-
-            yield return new TestCaseData(IdNotaContableAbierta, IdUsuarioDiferenteCreador, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
+            yield return new TestCaseData( IdUsuarioDiferenteCreador, IdGenerica, 10000, IdGenerica, Tiponotacontable.registrosnota, IdGenerica,
               "El usuario no tiene permiso para editar la nota contable.").SetName("Request con usuario diferente al creador.");
         }
         [Test]
