@@ -51,7 +51,14 @@ a[href^="#"] {
       transform: translateY(-4px);
       box-shadow: 0 4px 8px rgba(0,0,0,.2);
     }
+
+
 .dropdown:hover .dropdown-menu {
+  display: flex;
+}
+.dropdown-submenu {
+  display: none;
+}
+.dropdown-hover:hover .dropdown-submenu {
   display: block;
 }
-

@@ -35,7 +35,14 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" [routerLink]="['/formularioNotaContablePorRegistro']">Nota Contable</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Page 2</a>
+              <a class="dropdown-item" [routerLink]="['/page2']">Registrar Nota</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Opción 1</a></li>
+                <li><a class="dropdown-item" href="#">Opción 2</a></li>
+              </ul>
+              <a class="dropdown-item" [routerLink]="['/page3']">Revision de Notas</a>
+              <a class="dropdown-item" [routerLink]="['/page4']">Informes</a>
+              <a class="dropdown-item" [routerLink]="['/page5']">Configuracion</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -54,6 +61,10 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" [routerLink]="['/page1']">Page 1</a>
               <a class="dropdown-item" [routerLink]="['/page2']">Page 2</a>
+              <div class="dropdown-menu submenu" aria-labelledby="navbarDropdownMenuLink" #page2Submenu>
+                <a class="dropdown-item" [routerLink]="['/page2/option1']">Option 1</a>
+                <a class="dropdown-item" [routerLink]="['/page2/option2']">Option 2</a>
+              </div>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -61,7 +72,8 @@
               Configuracion General
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" [routerLink]="['/page1']">Page 1</a>
+              <a class="dropdown-item dropdown-toggle" [routerLink]="['/page1']">Page 1</a>
+               <a class="dropdown-submenu" [routerLink]="['/page2']">Page 2</a>
               <a class="dropdown-item" [routerLink]="['/page2']">Page 2</a>
             </div>
           </li>
