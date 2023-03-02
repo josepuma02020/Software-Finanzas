@@ -32,6 +32,10 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         {
             NombreArea = nombreArea;
         }
+        public Area(string nombreArea) : base(null)
+        {
+            NombreArea = nombreArea;
+        }
 
     }
     public class Equipo : Entity<Guid>

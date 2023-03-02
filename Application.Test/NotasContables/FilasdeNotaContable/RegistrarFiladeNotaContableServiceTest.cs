@@ -155,60 +155,60 @@ namespace Application.Test.NotasContables.FilasdeNotaContable
             #endregion
         }
         [TestCaseSource("DataTestFails")]
-        public void RegistrarFiladeNotaContableDatosInvalidos(DateTime fecha,Guid notacontableid,Guid terceroId,Guid cuentacontableId,Guid usuarioId,long importe,Guid LmId ,string esperado)
+        public void RegistrarFiladeNotaContableDatosInvalidos(DateTime fecha,Guid terceroId,Guid cuentacontableId,Guid usuarioId,long importe,Guid LmId ,string esperado)
         {
 
             var validator = new RegistrarFilaNotaContableDtoValidator(_unitOfWork);
 
             var response = validator.Validate(new RegistrarFilaNotaContableDto()
             {
-              CuentaContableId=cuentacontableId,Fecha=fecha,Importe=importe,NotaContableId = notacontableid,TerceroId=terceroId,UsuarioId=usuarioId,TerceroLMId=LmId,
+              CuentaContableId=cuentacontableId,Fecha=fecha,Importe=importe,TerceroId=terceroId,UsuarioId=usuarioId,TerceroLMId=LmId,
             });
 
             Assert.AreEqual(esperado, string.Join("\n", response.Errors));
         }
         private static IEnumerable<TestCaseData> DataTestFails()
         {
-            yield return new TestCaseData(new DateTime(2020,01,01), IdNotaContablePruebaRevisionesGestionContable, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal,123154645, IdTerceroPrueba,
+            yield return new TestCaseData(new DateTime(2020,01,01), IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal,123154645, IdTerceroPrueba,
               "La fecha suministrada no puede tener mas de 3 meses de diferencia a la fecha actual.").SetName("Request con fecha con diferencia de mas 3 meses.");
 
-            yield return new TestCaseData(new DateTime(2022, 01, 01), IdNotaContablePruebaRevisionesGestionContable, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(new DateTime(2022, 01, 01), IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
               "La fecha suministrada pertenece a un mes que ya fue cerrado.").SetName("Request con fecha cerrada.");
 
-            yield return new TestCaseData( DateTime.Now, null, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData( DateTime.Now, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
               "La nota contable es obligatoria para el registro.").SetName("Request con nota contable nula") ;
 
-            yield return new TestCaseData(DateTime.Now, Guid.NewGuid(), IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now,IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
               "La nota contable suministrada no fue encontrada en el sistema.").SetName("Request con nota contable inexistente");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, IdCuentaContable, null, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, IdCuentaContable, null, 123154645, IdTerceroPrueba,
               "El id del usuario creador es obligatorio.").SetName("Request con usuario nulo");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, IdCuentaContable, Guid.NewGuid(), 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, IdCuentaContable, Guid.NewGuid(), 123154645, IdTerceroPrueba,
               "El usuario suministrado no fue encontrado en el sistema.").SetName("Request con usuario inexistente");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, null, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, null, IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
               "El id del tercero es obligatorio.").SetName("Request con tercero nulo");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, Guid.NewGuid(), IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, Guid.NewGuid(), IdCuentaContable, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
               "El tercero suministrado no fue encontrado en el sistema.").SetName("Request con tercero inexistente");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, null, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, null, IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
              "La cuenta contable es obligatoria.").SetName("Request con cuenta nula");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, Guid.NewGuid(), IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, Guid.NewGuid(), IdUsuarioCreadorRolNormal, 123154645, IdTerceroPrueba,
              "La cuenta contable suministrada no fue encontrada en el sistema.").SetName("Request con cuenta inexistente");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, null, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, null, IdTerceroPrueba,
              "El valor del importe es obligatorio.").SetName("Request con valor de importe nulo");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 0, IdTerceroPrueba,
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 0, IdTerceroPrueba,
              "El valor del importe es obligatorio.").SetName("Request con valor de importe 0");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaRevisionesGestionContable, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 1233, Guid.NewGuid(),
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 1233, Guid.NewGuid(),
              "El tercero suministrado en el campo LM no fue encontrado en el sistema.").SetName("Request con terceroLm Intexistente y validaciones gestion contable");
 
-            yield return new TestCaseData(DateTime.Now, IdNotaContablePruebaAbierta, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 1233, Guid.NewGuid(),
+            yield return new TestCaseData(DateTime.Now, IdTerceroPrueba, IdCuentaContable, IdUsuarioCreadorRolNormal, 1233, Guid.NewGuid(),
              "El tercero suministrado en el campo LM no fue encontrado en el sistema.").SetName("Request con terceroLm Intexistente y validaciones financiacion");
 
         }

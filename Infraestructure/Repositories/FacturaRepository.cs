@@ -3,6 +3,8 @@ using Domain.Documentos;
 using Domain.Repositories;
 using Infraestructure.Base;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Infraestructure.Repositories
 {

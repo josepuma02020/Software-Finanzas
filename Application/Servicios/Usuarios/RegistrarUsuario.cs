@@ -28,7 +28,7 @@ namespace Application.Servicios.Usuarios
             var Equipo = Validator.Equipo;
             if (Area == null)
             {
-                var nuevaArea = new Area(null){ CodigoDependencia = request.CodigoDependencia, NombreArea = request.NombreArea,};
+                var nuevaArea = new Area(){ CodigoDependencia = request.CodigoDependencia, NombreArea = request.NombreArea,};
                 _unitOfWork.GenericRepository<Area>().Add(nuevaArea);
                 _unitOfWork.Commit();
                 Area = nuevaArea;

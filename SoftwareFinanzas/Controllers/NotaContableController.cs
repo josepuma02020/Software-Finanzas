@@ -20,25 +20,6 @@ namespace Infraestructure.Configuration.ConfigUsuarios
             _mediater = mediator;
             _unitOfWork = unitOfWork;
         }
-        [HttpGet]
-        public IEnumerable<Usuario> Get()
-        {
-            return _unitOfWork.NotaContableRepository.FindBy(includeProperties: "Rol");
-        }
-        [HttpPost]
-        public IActionResult Post(RegistrarUsuarioDto usuarioDto)
-        {
-            return Ok(_mediater.Send(usuarioDto).Result);
-        }
-        [HttpPut("editarusuario")]
-        public IActionResult ModificarRole(ModificarRoleDeUsuarioDto modificarRoleDeUsuario)
-        {
-            return Ok(_mediater.Send(modificarRoleDeUsuario).Result);
-        }
-        [HttpPut("editarusuario")]
-        public IActionResult AsignarProceso(AsignarProcesoUsuarioDto modificarRoleDeUsuario)
-        {
-            return Ok(_mediater.Send(modificarRoleDeUsuario).Result);
-        }
+       
     }
 }

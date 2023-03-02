@@ -33,5 +33,10 @@ namespace WebApi.Infrastructure
 
             return next();
         }
+
+        public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6383,24 +6383,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JHON\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Infrastructure.Test\\Infrastructure.Test.csproj",
+      "projectUniqueName": "C:\\Sistema Finanzas\\Infrastructure.Test\\Infrastructure.Test.csproj",
       "projectName": "Infrastructure.Test",
-      "projectPath": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Infrastructure.Test\\Infrastructure.Test.csproj",
-      "packagesPath": "C:\\Users\\JHON\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Infrastructure.Test\\obj\\",
+      "projectPath": "C:\\Sistema Finanzas\\Infrastructure.Test\\Infrastructure.Test.csproj",
+      "packagesPath": "C:\\Users\\JOSE PUMAREJO\\.nuget\\packages\\",
+      "outputPath": "C:\\Sistema Finanzas\\Infrastructure.Test\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\JHON\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\JOSE PUMAREJO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6414,8 +6409,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Infraestructure\\Infraestructure.csproj": {
-              "projectPath": "C:\\Users\\JHON\\OneDrive\\Documentos\\softwareFinanzas\\Software-Finanzas\\Infraestructure\\Infraestructure.csproj"
+            "C:\\Sistema Finanzas\\Infraestructure\\Infraestructure.csproj": {
+              "projectPath": "C:\\Sistema Finanzas\\Infraestructure\\Infraestructure.csproj"
             }
           }
         }
@@ -6471,7 +6466,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
