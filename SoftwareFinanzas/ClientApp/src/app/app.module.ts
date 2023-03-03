@@ -11,6 +11,8 @@ import { HomeComponent } from './PaginasGenerales/home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FormularioNotaContablePorRegistroComponent } from './NotasContables/formularioNotaContablePorRegistro/formularioNotaContablePorRegistro.component';
+import { notaContablePorConceptoComponent } from './NotasContables/notaContablePorConcepto/notaContablePorConcepto.component';
+import { notaContablePorAdjuntoComponent } from './NotasContables/notaContablePorAdjunto/notaContablePorAdjunto.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { FormularioNotaContablePorRegistroComponent } from './NotasContables/for
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    FormularioNotaContablePorRegistroComponent
+    FormularioNotaContablePorRegistroComponent,
+    notaContablePorConceptoComponent,
+    notaContablePorAdjuntoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +35,9 @@ import { FormularioNotaContablePorRegistroComponent } from './NotasContables/for
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'formularioNotaContablePorRegistro', component: FormularioNotaContablePorRegistroComponent }
+      { path: 'formularioNotaContablePorRegistro', component: FormularioNotaContablePorRegistroComponent },
+      { path: 'notaContablePorConcepto', component: notaContablePorConceptoComponent },
+      { path: 'notaContablePorAdjunto', component: notaContablePorAdjuntoComponent }
     ])
   ],
   providers: [],

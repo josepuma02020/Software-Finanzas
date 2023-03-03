@@ -34,11 +34,11 @@
               Notas Contables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" [routerLink]="['/formularioNotaContablePorRegistro']">Nota Contable</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Registrar Nota</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Opción 1</a></li>
-                <li><a class="dropdown-item" href="#">Opción 2</a></li>
+              <a class="dropdown-item" id="navbarDropdownMenuLink" [routerLink]="['/page2']">Registrar Nota</a>
+              <ul class="dropdown-submenu">
+                <li><a class="dropdown-item" [routerLink]="['/formularioNotaContablePorRegistro']">Nota Contable</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/notaContablePorConcepto']">Por Concepto</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/notaContablePorAdjunto']">Por Adjunto</a></li>
               </ul>
               <a class="dropdown-item" [routerLink]="['/page3']">Revision de Notas</a>
               <a class="dropdown-item" [routerLink]="['/page4']">Informes</a>
@@ -50,8 +50,9 @@
               Recaudos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" [routerLink]="['/page1']">Page 1</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Page 2</a>
+              <a class="dropdown-item" [routerLink]="['/page1']">Registrar Factura</a>
+              <a class="dropdown-item" [routerLink]="['/page2']">Tipo de factura</a>
+              <a class="dropdown-item" [routerLink]="['/page2']">Configuracion</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -59,12 +60,14 @@
               Flujo de caja
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" [routerLink]="['/page1']">Page 1</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Page 2</a>
+              <a class="dropdown-item" [routerLink]="['/page1']">Garantias</a>
               <div class="dropdown-menu submenu" aria-labelledby="navbarDropdownMenuLink" #page2Submenu>
-                <a class="dropdown-item" [routerLink]="['/page2/option1']">Option 1</a>
-                <a class="dropdown-item" [routerLink]="['/page2/option2']">Option 2</a>
+                <a class="dropdown-item" [routerLink]="['/page2/option1']">Comision garantia</a>
+                <a class="dropdown-item" [routerLink]="['/page2/option2']">Garantia</a>
+                <a class="dropdown-item" [routerLink]="['/page2/option2']">Informe</a>
               </div>
+              <a class="dropdown-item" [routerLink]="['/page2']">Configuracion</a>
+
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -72,9 +75,11 @@
               Configuracion General
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item dropdown-toggle" [routerLink]="['/page1']">Page 1</a>
-               <a class="dropdown-submenu" [routerLink]="['/page2']">Page 2</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Page 2</a>
+              <a class="dropdown-item dropdown-toggle" [routerLink]="['/page1']">Generales</a>
+              <a class="dropdown-submenu" [routerLink]="['/page2']">Cuentas</a>
+              <a class="dropdown-item" [routerLink]="['/page2']">Procesos</a>
+              <a class="dropdown-item" [routerLink]="['/page2']">Lista de ANB</a>
+              <a class="dropdown-item" [routerLink]="['/page2']">Usuarios</a>
             </div>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">

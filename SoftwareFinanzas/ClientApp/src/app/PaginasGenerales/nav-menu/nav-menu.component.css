@@ -4,12 +4,10 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-html {
-  font-size: 14px;
-}
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+
   }
 }
 
@@ -54,11 +52,8 @@ a[href^="#"] {
 
 
 .dropdown:hover .dropdown-menu {
-  display: flex;
-}
-.dropdown-submenu {
-  display: none;
+  display: initial;
 }
 .dropdown-hover:hover .dropdown-submenu {
-  display: block;
+  display: initial;
 }
