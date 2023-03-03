@@ -1,4 +1,9 @@
-﻿using Application;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using Application;
 using Application.Servicios.Bases;
 using Domain.Base;
 using Domain.Contracts;
@@ -6,6 +11,8 @@ using Domain.Documentos;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace SoftwareFinanzas.Infraestructure.Service
 {

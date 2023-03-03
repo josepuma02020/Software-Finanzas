@@ -1,4 +1,5 @@
-﻿using Domain.Aplicacion;
+﻿using System;
+using Domain.Aplicacion;
 using Domain.Aplicacion.EntidadesConfiguracion;
 using Domain.Base;
 using Domain.Documentos;
@@ -55,7 +56,6 @@ namespace Infraestructure.Context
         {
             //ConfiguracionGeneral
             modelBuilder.ApplyConfiguration(new ConfiguracionGeneralEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new BaseEntityConfiguration());
 
             //Documentos
             modelBuilder.ApplyConfiguration(new DocumentoEntityConfiguration());
@@ -84,7 +84,7 @@ namespace Infraestructure.Context
                 );
 
             modelBuilder.Entity<ConceptoFactura>().HasData(
-                new ConceptoFactura { Concepto="RI" }
+                new ConceptoFactura { Concepto="RI", Id = Guid.NewGuid()}
                 );
 
 

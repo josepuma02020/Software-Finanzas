@@ -15,8 +15,7 @@ namespace Infraestructure.Configuration.ConfigDocumentos
     {
         public void Configure(EntityTypeBuilder<Factura> builder)
         {
-            builder.ToTable(nameof(BaseEntityDocumento), FinanzasContext.DefaultSchema);
-            builder.HasKey(t => t.Id);
+            builder.ToTable(nameof(Factura), FinanzasContext.DefaultSchema);
             builder.HasOne(t => t.Tercero).WithMany(t => t.Facturas).HasForeignKey(t => t.TerceroId)
                .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.CuentaBancaria).WithMany(t => t.Facturas).HasForeignKey(t => t.CuentaBancariaId)

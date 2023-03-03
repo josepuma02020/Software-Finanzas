@@ -18,9 +18,9 @@ namespace Infraestructure.Configuration.Cuentas
         {
             builder.ToTable(nameof(Usuario), FinanzasContext.DefaultSchema);
             builder.HasKey(t => t.Id);
-            builder.HasOne(t => t.CuentaContableCredito).WithMany(t => t.ConceptosCuentasContables).HasForeignKey(t => t.CuentaContableCreditoId)
+            builder.HasOne(t => t.CuentaContableCredito).WithMany(t => t.ConceptosCuentasContableCredito).HasForeignKey(t => t.CuentaContableCreditoId)
               .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(t => t.CuentaContableDebito).WithMany(t => t.ConceptosCuentasContables).HasForeignKey(t => t.CuentaContableDebitoId)
+            builder.HasOne(t => t.CuentaContableDebito).WithMany(t => t.ConceptosCuentasContableDebito).HasForeignKey(t => t.CuentaContableDebitoId)
               .OnDelete(DeleteBehavior.Restrict);
 
         }

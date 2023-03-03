@@ -1,4 +1,5 @@
-﻿using Application.Servicios.Usuarios;
+﻿using System.Collections.Generic;
+using Application.Servicios.Usuarios;
 using Domain.Contracts;
 using Domain.Entities;
 using MediatR;
