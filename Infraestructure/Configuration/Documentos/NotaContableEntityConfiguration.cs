@@ -15,8 +15,7 @@ namespace Infraestructure.Configuration.ConfigDocumentos
     {
         public void Configure(EntityTypeBuilder<NotaContable> builder)
         {
-            builder.ToTable(nameof(BaseEntityDocumento), FinanzasContext.DefaultSchema);
-            builder.HasKey(t => t.Id);
+            builder.ToTable(nameof(NotaContable), FinanzasContext.DefaultSchema);
             builder.HasOne(t => t.ClasificacionDocumento).WithMany(t => t.NotasContables).HasForeignKey(t => t.ClasificacionDocumentoId)
                .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.Proceso).WithMany(t => t.NotasContables).HasForeignKey(t => t.ProcesoId)

@@ -17,9 +17,9 @@ namespace Infraestructure.Configuration.Bases
         public void Configure(EntityTypeBuilder<BaseEntity> builder)
         {
             builder.ToTable(nameof(Usuario), FinanzasContext.DefaultSchema);
-            builder.HasOne(t => t.UsuarioCreador).WithMany(t => t.EntityCreadas).HasForeignKey(t => t.UsuarioCreadorId)
+            builder.HasOne(t => t.UsuarioCreador).WithMany().HasForeignKey(t => t.UsuarioCreadorId)
               .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(t => t.UsuarioEditor).WithMany(t => t.EntityEditadas).HasForeignKey(t => t.UsuarioEditorId)
+            builder.HasOne(t => t.UsuarioEditor).WithMany().HasForeignKey(t => t.UsuarioEditorId)
               .OnDelete(DeleteBehavior.Restrict);
 
         }

@@ -34,7 +34,8 @@ namespace Domain.Aplicacion.Entidades.CuentasContables
             return this;
         }
         #region Configuracion
-        public IEnumerable<ConceptoxCuentaContable> ConceptosCuentasContables { get; set; }
+        public IEnumerable<ConceptoxCuentaContable> ConceptosCuentasContableCredito { get; set; }
+        public IEnumerable<ConceptoxCuentaContable>? ConceptosCuentasContableDebito { get; set; }
         #endregion
     }
     public class ConceptoxCuentaContable : Entity<Guid>

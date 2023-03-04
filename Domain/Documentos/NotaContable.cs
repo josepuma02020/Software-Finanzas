@@ -27,7 +27,7 @@ namespace Domain.Documentos
         public string? Comentario { get; set; }
         public long Importe { get; set; }
         public ClasificacionDocumento ClasificacionDocumento { get; set; }
-        public Guid ClasificacionDocumentoId => ClasificacionDocumento.Id;
+        public Guid ClasificacionDocumentoId {get; set; }
         public string DescripcionClasificacionDocumento => ClasificacionDocumento.Descripcion;
         public List<Registrodenotacontable> Registrosnota { get; set; }
         public long SalarioMinimoVigente { get; set; }
