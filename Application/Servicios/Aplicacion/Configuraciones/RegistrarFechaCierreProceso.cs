@@ -32,8 +32,7 @@ namespace Application.Servicios.Aplicacion.Configuraciones
 
             var configuracionProcesoNueva = new ConfiguracionProcesoNotasContables(request.Año,request.Mes,usuarioconfiguro)
             {
-                FechaCierre=DateTime.Now,UsuarioConfiguro=usuarioconfiguro,
-                IdUsuarioConfiguro=request.UsuarioId,
+                FechaCierre=DateTime.Now,
                 Año=request.Año,Mes=request.Mes,
                 ProcesoNotaContable = Validator.Proceso,
                 ProcesoId = request.ProcesoId,

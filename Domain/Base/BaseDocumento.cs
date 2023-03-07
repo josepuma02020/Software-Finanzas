@@ -31,7 +31,6 @@ namespace Domain.Base
         public Guid? VerificadorId { get; set; }
         public Guid? AutorizadorId { get; set; }
         public Guid? AprobadorId { get; set; }
-        public DateTime FechaEdicion { get; set; }
         public DateTime FechaAprobacion { get; set; }
         public DateTime FechaAutorizacion { get; set; }
         public DateTime FechaVerificacion { get; set; }
@@ -48,7 +47,7 @@ namespace Domain.Base
         }
         public BaseEntityDocumento (Usuario usuariocreador) : base(usuariocreador)
         {
-            EquipoCreador = usuariocreador?.Equipo;
+            EquipoCreador = usuariocreador.Equipo;
             EstadoDocumento = EstadoDocumento.Abierto;
         }
         public BaseEntityDocumento SetSoportes(List<AppFile> soportes,Usuario usuarioeditor)

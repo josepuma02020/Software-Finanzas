@@ -1,5 +1,6 @@
 ﻿using Domain.Aplicacion.Entidades.CuentasBancarias;
 using Domain.Base;
+using Domain.Documentos;
 using Domain.Entities;
 using Domain.Extensions;
 using System;
@@ -11,9 +12,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Aplicacion.Entidades.CuentasContables
 {
-    public class CuentaContable : BaseCuenta
+    public class CuentaContable : Cuenta
     {
         public CuentaBancaria? CuentaBancaria { get; set; }
+        public Guid? CuentaBancariaId { get; set; }
+        public List<Registrodenotacontable> RegistrosNotaContable { get; set; }
         private CuentaContable() : base(null)
         {
         }

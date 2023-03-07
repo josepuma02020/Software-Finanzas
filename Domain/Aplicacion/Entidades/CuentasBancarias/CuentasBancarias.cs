@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Aplicacion.Entidades.CuentasBancarias
 {
-    public class CuentaBancaria : BaseCuenta
+    public class CuentaBancaria : Cuenta
     {
         public virtual TipoCuentaBancaria? TipoCuentaBancaria { get; set; }
         public string? DecTipoCuentaBancaria => TipoCuentaBancaria?.GetDescription();
-        public List<CuentaContable> CuentasContable { get; set; }
+        public List<CuentaContable> CuentasContables { get; set; }
+        public List<Pagos> Pagos { get; set; }
 
         #region Metodos
         private CuentaBancaria() : base(null)
@@ -44,6 +45,7 @@ namespace Domain.Aplicacion.Entidades.CuentasBancarias
         }
         #endregion
         #region Configuracion
+        public IEnumerable<CuentasBancariasxFactura> CuentasxFacturas { get; set; }
         public IEnumerable<Factura> Facturas { get; set; }
         public IEnumerable<Saldos> Saldos { get; set; }
         #endregion

@@ -15,7 +15,6 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         public string? NombreArea { get; set; }
         public string CodigoDependencia { get; set; }
         #region Configuracion
-        public IEnumerable<Equipo> EquiposdeArea { get; set; }
         public IEnumerable<Proceso> Procesos { get; set; }
         public IEnumerable<Usuario> Usuarios { get; set; }
         #endregion
@@ -45,8 +44,9 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         public Guid AreaId { get; set; }
         public Area Area { get; set; }
         public List<Proceso>? Procesos { get; set; }
+        public List<BaseEntityDocumento>? DocumentosCreados { get; set; }
+
         #region Configuracion
-        public IEnumerable<Proceso> ProcesosdeEquipos { get; set; }
         public IEnumerable<NotaContable> NotasContables { get; set; }
         #endregion
         public Equipo() : base(null)
@@ -73,7 +73,7 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         #region Configuracion
         public IEnumerable<Usuario> Usuarios { get; set; }
         public IEnumerable<NotaContable> NotasContables { get; set; }
-
+        public List<ConfiguracionProcesoNotasContables>? ConfiguracionesNotasContables { get; set; }
         #endregion
         public Proceso() : base(null)
         {

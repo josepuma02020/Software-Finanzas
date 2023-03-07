@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infraestructure.Configuration.Documentos
 {
-    internal class SaldosEntityConfiguration : IEntityTypeConfiguration<Saldos>
+    public class SaldosEntityConfiguration : IEntityTypeConfiguration<Saldos>
     {
         public void Configure(EntityTypeBuilder<Saldos> builder)
         {

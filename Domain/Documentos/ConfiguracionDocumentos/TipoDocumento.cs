@@ -25,5 +25,6 @@ namespace Domain.Documentos.ConfiguracionDocumentos
         [Description("Facturas")] Facturas,
         [Description("Notas Contable Financiacion")] NotasContable,
         [Description("Acutalizacion de saldos.")] SaldosDiarios,
+        [Description("Pagos.")] Pagos,
     }
 }

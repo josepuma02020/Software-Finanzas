@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infraestructure.Configuration.ConfigAreas
+namespace Infraestructure.Configuration.Aplicacion.Areas
 {
-    internal class ProcesoEntityConfiguration : IEntityTypeConfiguration<Proceso>
+    public class ProcesoEntityConfiguration : IEntityTypeConfiguration<Proceso>
     {
         public void Configure(EntityTypeBuilder<Proceso> builder)
         {
@@ -18,8 +18,9 @@ namespace Infraestructure.Configuration.ConfigAreas
             builder.HasKey(t => t.Id);
             builder.HasOne(t => t.UsuarioCreador).WithMany(t => t.ProcesosCreados).HasForeignKey(t => t.UsuarioCreadorId)
                 .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(t => t.Equipo).WithMany(t => t.ProcesosdeEquipos).HasForeignKey(t => t.EquipoId)
+            builder.HasOne(t => t.Equipo).WithMany(t => t.Procesos).HasForeignKey(t => t.EquipoId)
                 .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(t => t.NombreProceso).HasMaxLength(40);
         }
     }
 }

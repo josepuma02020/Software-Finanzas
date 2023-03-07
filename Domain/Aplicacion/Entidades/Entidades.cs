@@ -17,7 +17,7 @@ namespace Domain.Aplicacion.Entidades
         public string NombreEntidad { get; set; }
         public string? Observaciones { get; set; }
         public Estado Estado { get; set; }
-        public List<BaseCuenta> Cuentas { get; set; }
+        public List<Cuenta> Cuentas { get; set; }
         #region Metodos
         public Entidad() : base(null)
         {
@@ -38,7 +38,6 @@ namespace Domain.Aplicacion.Entidades
         }
         #endregion
         #region Configuracion
-        public IEnumerable<BaseCuenta> CuentasConfiguracion { get; set; }
         #endregion
     }
     public enum Estado

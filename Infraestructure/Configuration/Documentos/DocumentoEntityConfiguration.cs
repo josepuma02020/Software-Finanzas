@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Base;
+using Domain.Documentos.ConfiguracionDocumentos;
 
 namespace Infraestructure.Configuration.ConfigDocumentos
 {
-    internal class DocumentoEntityConfiguration : IEntityTypeConfiguration<BaseEntityDocumento>
+    public class DocumentoEntityConfiguration : IEntityTypeConfiguration<BaseEntityDocumento>
     {
         public void Configure(EntityTypeBuilder<BaseEntityDocumento> builder)
         {
@@ -35,6 +36,40 @@ namespace Infraestructure.Configuration.ConfigDocumentos
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.UsuarioEditor).WithMany(t => t.DocumentosEditados).HasForeignKey(t => t.UsuarioEditorId)
                 .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.EquipoCreador).WithMany(t=>t.DocumentosCreados).HasForeignKey(t => t.EquipoCreadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+    }
+    public class ClasificacionDocumentosEntityConfiguration : IEntityTypeConfiguration<ClasificacionDocumento>
+    {
+        public void Configure(EntityTypeBuilder<ClasificacionDocumento> builder)
+        {
+            builder.ToTable(nameof(ClasificacionDocumento), FinanzasContext.DefaultSchema);
+            builder.HasKey(t => t.Id);
+            builder.HasOne(t => t.UsuarioCreador).WithMany(t => t.ClasificacionesdeDocumentoCreadas).HasForeignKey(t => t.UsuarioCreadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.UsuarioEditor).WithMany(t => t.ClasificacionesdeDocumentoEditadas).HasForeignKey(t => t.UsuarioEditorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(t => t.Descripcion).HasMaxLength(40);
+
+
+        }
+    }
+    public class TiposdeDocumentosEntityConfiguration : IEntityTypeConfiguration<TipoDocumento>
+    {
+        public void Configure(EntityTypeBuilder<TipoDocumento> builder)
+        {
+            builder.ToTable(nameof(TipoDocumento), FinanzasContext.DefaultSchema);
+            builder.HasKey(t => t.Id);
+            builder.HasOne(t => t.UsuarioCreador).WithMany(t => t.TiposdeDocumentosCreados).HasForeignKey(t => t.UsuarioCreadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.Property(t => t.CodigoTipoDocumento).HasMaxLength(10);
+            builder.Property(t => t.DescripcionTipoDocumento).HasMaxLength(30);
+
+
         }
     }
 }

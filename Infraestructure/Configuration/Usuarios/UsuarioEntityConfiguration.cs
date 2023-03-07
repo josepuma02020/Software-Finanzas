@@ -17,7 +17,7 @@ namespace Infraestructure.Configuration.ConfigUsuarios
         {
             builder.ToTable(nameof(Usuario), FinanzasContext.DefaultSchema);
             builder.HasKey(t => t.Id);
-            builder.HasOne(t => t.UsuarioCreador).WithMany(t => t.UsuariosCreados).HasForeignKey(t => t.UsuarioCreadorId)
+            builder.HasOne(t => t.UsuarioCreador).WithMany().HasForeignKey(t => t.UsuarioCreadorId)
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.UsuarioAsignaProceso).WithMany(t => t.UsuariosqueAgregoProceso).HasForeignKey(t => t.UsuarioAsignaProcesoId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -25,6 +25,11 @@ namespace Infraestructure.Configuration.ConfigUsuarios
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.Area).WithMany(t => t.Usuarios).HasForeignKey(t => t.AreaId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(t => t.Nombre).HasMaxLength(40);
+            builder.Property(t => t.Identificacion).HasMaxLength(30);
+            builder.Property(t => t.Email).HasMaxLength(40);
+
         }
     }
 }

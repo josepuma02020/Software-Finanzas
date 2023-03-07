@@ -1,6 +1,9 @@
 ﻿using Domain.Aplicacion;
+using Domain.Aplicacion.Entidades;
+using Domain.Aplicacion.Entidades.CuentasContables;
 using Domain.Aplicacion.EntidadesConfiguracion;
 using Domain.Base;
+using Domain.Documentos.ConfiguracionDocumentos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,9 +34,10 @@ namespace Domain.Entities
         #region Configuracion de relaciones
         #region ConfiguracionGeneral
         public IEnumerable<Configuracion> ConfiguracionesCreadas { get; set; }
+        public IEnumerable<Cuenta> CuentasEditadas { get; set; }
         #endregion
         #region Areas
-        public IEnumerable<BaseCuenta> CuentasCreadas { get; set; }
+        public IEnumerable<Cuenta> CuentasCreadas { get; set; }
         public IEnumerable<Area> AreasCreadas { get; set; }
         public IEnumerable<Area> AreasEditadas { get; set; }
         public IEnumerable<Equipo> EquiposCreados { get; set; }
@@ -42,6 +46,13 @@ namespace Domain.Entities
         public IEnumerable<Proceso> ProcesosEditados { get; set; }
         #endregion
         #region Documentos
+        public IEnumerable<TipoDocumento> TiposdeDocumentosCreados { get; set; }
+        public IEnumerable<Entidad> EntidadesCreadas { get; set; }
+        public IEnumerable<ConfiguracionServicios>? ConfiguracionesServicios { get; set; }
+        public IEnumerable<ConfiguracionProcesoNotasContables> ConfiguracionesNotasContables { get; set; }
+        public IEnumerable<ClasificacionDocumento> ClasificacionesdeDocumentoCreadas { get; set; }
+        public IEnumerable<ClasificacionDocumento> ClasificacionesdeDocumentoEditadas { get; set; }
+        public IEnumerable<AppFile> ArchivosCargados { get; set; }
         public IEnumerable<BaseEntityDocumento> DocumentosCreados { get; set; }
         public IEnumerable<BaseEntityDocumento> DocumentosAnulados { get; set; }
         public IEnumerable<BaseEntityDocumento> DocumentosAprobados { get; set; }
@@ -55,7 +66,6 @@ namespace Domain.Entities
         #endregion
         #region Usuarios
         public IEnumerable<Usuario> UsuariosqueAgregoProceso { get; set; }
-        public IEnumerable<Usuario> UsuariosCreados { get; set; }
         #endregion
         #endregion
         public Usuario() : base(null)

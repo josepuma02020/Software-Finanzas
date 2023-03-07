@@ -10,18 +10,41 @@ using System.Threading.Tasks;
 using Domain.Aplicacion.Entidades;
 using Domain.Aplicacion.Entidades.CuentasBancarias;
 using Domain.Base;
+using Domain.Aplicacion.Entidades.CuentasContables;
 
 namespace Infraestructure.Configuration.Cuentas
 {
-    internal class CuentasEntityConfiguration : IEntityTypeConfiguration<BaseCuenta>
+    public class CuentasEntityConfiguration : IEntityTypeConfiguration<Cuenta>
     {
-        public void Configure(EntityTypeBuilder<BaseCuenta> builder)
+        public void Configure(EntityTypeBuilder<Cuenta> builder)
         {
-            builder.ToTable(nameof(Usuario), FinanzasContext.DefaultSchema);
+            builder.ToTable(nameof(Cuenta), FinanzasContext.DefaultSchema);
             builder.HasKey(t => t.Id);
             builder.HasOne(t => t.UsuarioCreador).WithMany(t => t.CuentasCreadas).HasForeignKey(t => t.UsuarioCreadorId)
               .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(t => t.Entidad).WithMany(t => t.CuentasConfiguracion).HasForeignKey(t => t.EntidadId)
+            builder.HasOne(t => t.UsuarioEditor).WithMany(t => t.CuentasEditadas).HasForeignKey(t => t.UsuarioEditorId)
+              .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(t => t.Entidad).WithMany(t => t.Cuentas).HasForeignKey(t => t.EntidadId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(t => t.NumeroCuenta).HasMaxLength(40);
+            builder.Property(t => t.DescripcionCuenta).HasMaxLength(60);
+        }
+    }
+    public class CuentaBancariaEntityConfiguration : IEntityTypeConfiguration<CuentaBancaria>
+    {
+        public void Configure(EntityTypeBuilder<CuentaBancaria> builder)
+        {
+
+        }
+    }
+    public class CuentaContableEntityConfiguration : IEntityTypeConfiguration<CuentaContable>
+    {
+        public void Configure(EntityTypeBuilder<CuentaContable> builder)
+        {
+            builder.ToTable(nameof(CuentaContable), FinanzasContext.DefaultSchema);
+            builder.HasKey(t => t.Id);
+            builder.HasOne(t => t.CuentaBancaria).WithMany(t => t.CuentasContables).HasForeignKey(t => t.CuentaBancariaId)
               .OnDelete(DeleteBehavior.Restrict);
         }
     }

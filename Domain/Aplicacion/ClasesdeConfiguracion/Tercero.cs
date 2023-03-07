@@ -16,10 +16,11 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         public string? ObservacionAdicional { get; set; }
         public string Codigotercero { get; set; }
         public Estado Estado { get; set; }
-        public Usuario UsuarioEditor { get; set; }
-        public Guid UsuarioEditorId { get; set; }
+
         #region Configuracion
         public IEnumerable<Factura> Facturas { get; set; }
+        public IEnumerable<Registrodenotacontable> TercerosLM { get; set; }
+        public IEnumerable<Registrodenotacontable> TercerosAN8 { get; set; }
         #endregion
         private Tercero() : base(null)
         {

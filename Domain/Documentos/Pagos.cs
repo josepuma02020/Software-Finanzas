@@ -18,6 +18,7 @@ namespace Domain.Documentos
         public string? Observaciones { get; set; }
         public DateTime Fecha { get; set; }
         public CuentaBancaria CuentaBancaria { get; set; }
+        public Guid CuentaBancariaId { get; set; }
         private Pagos():base(null) { }
         public Pagos(Usuario creador) : base(creador) { }
     }

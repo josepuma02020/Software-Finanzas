@@ -41,7 +41,6 @@ namespace SoftwareFinanzas.Infraestructure.Service
                     appFile = new AppFile.AppFileBuilder()
                         .SetNombre(soporte.FileName)
                         .SetPath($"Soportes\\{request.DocumentoId}\\{soporte.FileName}")
-                        .SetUsuarioQueCargoElArchivo(_validator.UsuarioCargoSoporte)
                         .Build();
                 }
                 listaSoportes.Add(appFile);

@@ -28,12 +28,12 @@ namespace SoftwareFinanzas.Controllers
         {
             return Ok(_mediater.Send(usuarioDto).Result);
         }
-        [HttpPut("editarusuario")]
+        [HttpPut("editarusuario/rol")]
         public IActionResult ModificarRole(ModificarRoleDeUsuarioDto modificarRoleDeUsuario)
         {
             return Ok(_mediater.Send(modificarRoleDeUsuario).Result);
         }
-        [HttpPut("editarusuario")]
+        [HttpPut("editarusuario/proceso")]
         public IActionResult AsignarProceso(AsignarProcesoUsuarioDto modificarRoleDeUsuario)
         {
             return Ok(_mediater.Send(modificarRoleDeUsuario).Result);

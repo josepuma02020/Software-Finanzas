@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infraestructure.Configuration.ConfigAreas
+namespace Infraestructure.Configuration.Aplicacion.Areas
 {
     internal class EquipoEntityConfiguration : IEntityTypeConfiguration<Equipo>
     {
@@ -20,8 +20,11 @@ namespace Infraestructure.Configuration.ConfigAreas
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.UsuarioEditor).WithMany(t => t.EquipoEditados).HasForeignKey(t => t.UsuarioEditorId)
                 .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(t => t.Area).WithMany(t => t.EquiposdeArea).HasForeignKey(t => t.AreaId)
+            builder.HasOne(t => t.Area).WithMany(t => t.Equipos).HasForeignKey(t => t.AreaId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(t => t.NombreEquipo).HasMaxLength(40);
+            builder.Property(t => t.CodigoEquipo).HasMaxLength(20);
         }
     }
 }

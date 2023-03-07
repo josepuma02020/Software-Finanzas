@@ -9,7 +9,7 @@ using Domain.Aplicacion.EntidadesConfiguracion;
 using Microsoft.VisualBasic;
 using Infraestructure.Context;
 
-namespace Infraestructure.Configuration.ConfigAreas
+namespace Infraestructure.Configuration.Aplicacion.Areas
 
 {
     internal class AreaEntityConfiguration : IEntityTypeConfiguration<Area>
@@ -22,6 +22,9 @@ namespace Infraestructure.Configuration.ConfigAreas
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.UsuarioEditor).WithMany(t => t.AreasEditadas).HasForeignKey(t => t.UsuarioEditorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(t => t.NombreArea).HasMaxLength(40);
+            builder.Property(t => t.CodigoDependencia).HasMaxLength(20);
         }
     }
 }

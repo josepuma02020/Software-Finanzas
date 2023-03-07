@@ -33,8 +33,6 @@ namespace Domain.Aplicacion
         public int Año { get; set; }
         public Proceso ProcesoNotaContable { get; set; }
         public Guid ProcesoId { get; set; }
-        public Guid? IdUsuarioConfiguro { get; set; }
-        public Usuario? UsuarioConfiguro { get; set; }
         private ConfiguracionProcesoNotasContables() : base(null) { }
         public ConfiguracionProcesoNotasContables(int mes,int año,Usuario usuariocreador):base(usuariocreador)
         {

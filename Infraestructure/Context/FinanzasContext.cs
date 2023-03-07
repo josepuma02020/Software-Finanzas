@@ -7,7 +7,6 @@ using Domain.Documentos.ConfiguracionDocumentos;
 using Domain.Entities;
 using Infraestructure.Base;
 using Infraestructure.Configuration.ConfigDocumentos;
-using Infraestructure.Configuration.ConfigAreas;
 using Microsoft.EntityFrameworkCore;
 using Infraestructure.Configuration.ConfigUsuarios;
 using Infraestructure.Configuration;
@@ -17,6 +16,9 @@ using Domain.Aplicacion.Entidades.CuentasContables;
 using Infraestructure.Configuration.Cuentas;
 using Infraestructure.Configuration.Bases;
 using Infraestructure.Configuration.Documentos;
+using Infraestructure.Configuration.Aplicacion.Areas;
+using Infraestructure.Configuration.Entidades;
+using Infraestructure.Configuration.Aplicacion.Terceros;
 
 namespace Infraestructure.Context
 {
@@ -30,7 +32,7 @@ namespace Infraestructure.Context
         }
         public DbSet<Pagos> Pagos { get; set; }
         public DbSet<ConfiguracionServicios> ConfiguracionServicios { get; set; }
-        public DbSet<CuentasBancariasxFactura> CuentasxFactura { get; set; }
+        public DbSet<CuentasBancariasxFactura> CuentasBancariasxFactura { get; set; }
         public DbSet<CuentaContable> CuentasContables { get; set; }
         public DbSet<CuentaBancaria> CuentasBancarias { get; set; }
         public DbSet<ConfiguracionProcesoNotasContables> ConfiguracionesNotasContables { get; set; }
@@ -56,12 +58,15 @@ namespace Infraestructure.Context
         {
             //ConfiguracionGeneral
             modelBuilder.ApplyConfiguration(new ConfiguracionGeneralEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ConfiguracionNotasContablesEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ConfiguracionServiciosEntityConfiguration());
 
             //Documentos
             modelBuilder.ApplyConfiguration(new DocumentoEntityConfiguration());
             modelBuilder.ApplyConfiguration(new NotaContableEntityConfiguration());
             modelBuilder.ApplyConfiguration(new FacturaEntityConfiguration());
             modelBuilder.ApplyConfiguration(new SaldosEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PagosEntityConfiguration());
 
             //Areas
             modelBuilder.ApplyConfiguration(new AreaEntityConfiguration());
@@ -71,9 +76,18 @@ namespace Infraestructure.Context
             //Clases Primarias
             modelBuilder.ApplyConfiguration(new UsuarioEntityConfiguration());
             modelBuilder.ApplyConfiguration(new CuentasEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new EntidadesEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new RegistrosNotaContableEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new TercerosEntityConfiguration());
 
             //Clases secundarias
             modelBuilder.ApplyConfiguration(new ConceptosCuentasContbalesEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new AppFilesEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new TipoPagoEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ClasificacionDocumentosEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ConceptoFacturaEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new TiposdeDocumentosEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CuentasBancariasxFacturaEntityConfiguration());
 
 
             //Inicializaciones

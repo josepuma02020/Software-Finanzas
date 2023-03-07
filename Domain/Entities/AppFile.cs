@@ -13,13 +13,10 @@ namespace Domain.Entities
         {
             Path = appFileBuilder.Path;
             Nombre = appFileBuilder.Nombre;
-            UsuarioQueCargoElArchivo = appFileBuilder.UsuarioQueCargoElArchivo;
         }
         public string Path { get; set; }
         public string Nombre { get; set; }
 
-        public Guid DocumentoId { get; set; }
-        public Usuario UsuarioQueCargoElArchivo { get; set; }
         private AppFile() : base( null)
         {
 
@@ -32,7 +29,6 @@ namespace Domain.Entities
         {
             public string Path { get; set; }
             public string Nombre { get; set; }
-            public Usuario UsuarioQueCargoElArchivo { get; set; }
             public AppFileBuilder SetPath(string path)
             {
                 Path = path;
@@ -41,11 +37,6 @@ namespace Domain.Entities
             public AppFileBuilder SetNombre(string nombre)
             {
                 Nombre = nombre;
-                return this;
-            }
-            public AppFileBuilder SetUsuarioQueCargoElArchivo(Usuario usuarioQueCargoElArchivo)
-            {
-                UsuarioQueCargoElArchivo = usuarioQueCargoElArchivo;
                 return this;
             }
             public AppFile Build()

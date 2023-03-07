@@ -28,11 +28,14 @@ namespace Domain.Documentos
         public long Importe { get; set; }
         public ClasificacionDocumento ClasificacionDocumento { get; set; }
         public Guid ClasificacionDocumentoId {get; set; }
-        public string DescripcionClasificacionDocumento => ClasificacionDocumento.Descripcion;
+        public string DescripcionClasificacionDocumento => ClasificacionDocumento?.Descripcion;
         public List<Registrodenotacontable> Registrosnota { get; set; }
         public long SalarioMinimoVigente { get; set; }
         public Proceso Proceso { get; set; }
         public Guid? ProcesoId { get; set; }
+        
+        public Equipo EquipoCreador { get; set; }
+        public Guid EquipoCreadorId { get; set; }
         public Equipo Equipo { get; set; }
         public Guid EquipoId { get; set; }
         public bool revisable { get; set; }
