@@ -6,6 +6,7 @@ using Infraestructure.Base;
 using Infraestructure.Context;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,29 +46,9 @@ builder.Services.AddSpaStaticFiles(configuration =>
     configuration.RootPath = "ClientApp/dist";
 });
 
-			#region SwaggerOpen Api
+#region SwaggerOpen Api
 //Register the Swagger services
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "Task API",
-        Description = "Task API - ASP.NET Core Web API",
-        TermsOfService = new Uri("https://cla.dotnetfoundation.org/"),
-        Contact = new OpenApiContact
-        {
-            Name = "Unicesar",
-            Email = string.Empty,
-            Url = new Uri("https://github.com/borisgr04/CrudNgDotNetCore3"),
-        },
-        License = new OpenApiLicense
-        {
-            Name = "Licencia dotnet foundation",
-            Url = new Uri("https://www.byasystems.co/license"),
-        }
-    });
-});
+builder.Services.AddSwaggerGen( );
 			#endregion
 
 builder.Services.AddControllersWithViews();
@@ -100,7 +81,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 			#region Activar SwaggerUI
-app.UseSwagger();
+app.UseSwagger(Options =>
+{
+    Options.SerializeAsV2 = true;
+});
 app.UseSwaggerUI(
     options =>
     {
