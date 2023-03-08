@@ -13,6 +13,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FormularioNotaContablePorRegistroComponent } from './NotasContables/formularioNotaContablePorRegistro/formularioNotaContablePorRegistro.component';
 import { notaContablePorConceptoComponent } from './NotasContables/notaContablePorConcepto/notaContablePorConcepto.component';
 import { notaContablePorAdjuntoComponent } from './NotasContables/notaContablePorAdjunto/notaContablePorAdjunto.component';
+import { footerComponent } from './PaginasGenerales/footer/footer.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { notaContablePorAdjuntoComponent } from './NotasContables/notaContablePo
     FetchDataComponent,
     FormularioNotaContablePorRegistroComponent,
     notaContablePorConceptoComponent,
-    notaContablePorAdjuntoComponent
+    notaContablePorAdjuntoComponent,
+    footerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,7 +39,9 @@ import { notaContablePorAdjuntoComponent } from './NotasContables/notaContablePo
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'formularioNotaContablePorRegistro', component: FormularioNotaContablePorRegistroComponent },
       { path: 'notaContablePorConcepto', component: notaContablePorConceptoComponent },
-      { path: 'notaContablePorAdjunto', component: notaContablePorAdjuntoComponent }
+      { path: 'notaContablePorAdjunto', component: notaContablePorAdjuntoComponent },
+      { path: 'footer', component: footerComponent }
+
     ])
   ],
   providers: [],

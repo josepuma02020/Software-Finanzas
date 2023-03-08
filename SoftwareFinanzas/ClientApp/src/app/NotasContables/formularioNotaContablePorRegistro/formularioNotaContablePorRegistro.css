@@ -11,7 +11,7 @@ h2 {
   font-family: "Arial", sans-serif;
   color: cadetblue;
   padding: 20px;
-  margin-left:100px
+  margin-left:150px
 }
 
 .formularioNotaContablePorRegistro {
@@ -29,13 +29,13 @@ h2 {
   flex-wrap: wrap;
   margin-bottom: 20px;
   border-radius: 20px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 50px;
   margin-bottom: 20px;
 }
 idDocumento {
@@ -61,15 +61,15 @@ idDocumento {
     margin-bottom: 10px;
   }
 
-  .container:first-child {
+.container:first-child {
     max-width: 1000px;
     height: 100px;
   }
 
-  .container:nth-child(2) {
-    max-width: 1000px;
-    height: 100px;
-  }
+.container:nth-child(2) {
+  max-width: 1000px;
+  height: 100px;
+}
 
 .container-three {
   max-width: 1000px;
@@ -83,9 +83,24 @@ idDocumento {
     height: 100px;
   }
 #Boton {
-  align-items: center;
-  margin-left: 10px;
-  margin-left: 10px;
-  height: 50px;
-  background-color: lightsteelblue;
+  background-color: #4CAF50; /* verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
+
+#Boton {
+  transition-duration: 0.4s;
+}
+
+#Boton:hover {
+    background-color: #555555;
+    color: white;
+  }

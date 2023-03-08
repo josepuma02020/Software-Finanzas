@@ -2,10 +2,11 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color:midnightblue;
 }
 
 @media (min-width: 768px) {
-  html {
+ html {
     font-size: 16px;
 
   }
@@ -19,7 +20,7 @@ a.navbar-brand {
   transition: box-shadow 0.5s ease;
 }
 
-  .navbar.scrolled {
+ .navbar.scrolled {
     box-shadow: 0 2px 4px rgba(0,0,0,.2);
   }
 
@@ -40,16 +41,16 @@ a[href^="#"] {
     background-color: #007bff;
   }
 
-  a[href^="#"]:not(.navbar-brand) {
+a[href^="#"]:not(.navbar-brand) {
     padding: 10px;
     border-radius: 4px;
   }
 
-    a[href^="#"]:not(.navbar-brand):hover {
+a[href^="#"]:not(.navbar-brand):hover {
       transform: translateY(-4px);
       box-shadow: 0 4px 8px rgba(0,0,0,.2);
-    }
 
+}
 
 .dropdown:hover .dropdown-menu {
   display: initial;
@@ -57,3 +58,4 @@ a[href^="#"] {
 .dropdown-hover:hover .dropdown-submenu {
   display: initial;
 }
+
