@@ -1,0 +1,120 @@
+<h1>nota Contable Por Adjunto</h1>
+
+<div class="container">
+
+  <div class="navbar-brand">
+    <div>
+      <label for="idDocumento">Documento:</label>
+      <input type="number" class="form-control" id="idDocumento" placeholder="idDocumento">
+    </div>
+  </div>
+  <div class="navbar-brand">
+    <div>
+      <label for="FechaCreacion">Fecha de Creacion:</label>
+      <input type="date" class="form-control" id="FechaCreacion" placeholder="FechaCreacion">
+    </div>
+  </div>
+  <div class="navbar-brand">
+    <div>
+      <label for="Batch">Batch:</label>
+      <input type="number" class="form-control" id="Batch" placeholder="Batch">
+    </div>
+  </div>
+</div>
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <h2>Informacion del empleado</h2>
+    <div>
+      <div class="container">
+        <div class="navbar-brand">
+          <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" placeholder="nombre">
+          </div>
+        </div>
+        <div class="navbar-brand">
+          <div>
+            <label for="correo">Correo:</label>
+            <input type="email" class="form-control" id="correo" placeholder="correo">
+          </div>
+        </div>
+        <div class="navbar-brand">
+          <div>
+            <label for="departamento">Departamento:</label>
+            <input type="text" class="form-control" id="departamento" placeholder="departamento">
+          </div>
+        </div>
+      </div>
+
+      <h2>Informacion del registro contable</h2>
+      <div class="container">
+        <div class="navbar-brand">
+          <div>
+            <label for="proceso">Proceso:</label>
+            <select type="text" class="form-control" id="proceso" placeholder="proceso">
+              <option value="opcion1">Opción 1</option>
+              <option value="opcion2">Opción 2</option>
+              <option value="opcion3">Opción 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="navbar-brand">
+          <div>
+            <label for="tipoDocumento">Tipo de documento:</label>
+            <select type="tipoDocumento" class="form-control" id="tipoDocumento" placeholder="tipoDocumento">
+              <option value="opcion1">Opción 1</option>
+              <option value="opcion2">Opción 2</option>
+              <option value="opcion3">Opción 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="navbar-brand">
+          <div>
+            <label for="clasificacion">Clasificación:</label>
+            <select type="clasificacion" class="form-control" id="clasificacion" placeholder="clasificacion">
+              <option value="opcion1">Opción 1</option>
+              <option value="opcion2">Opción 2</option>
+              <option value="opcion3">Opción 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<h2>Aprobacion y autorizacion de registro contable</h2>
+
+<div>
+  <div class="container">
+    <div>
+      <div class="navbar-brand">
+        <div>
+          <label for="aprobador">Aprobado Por:</label>
+          <input type="text" class="form-control" id="aprobador" placeholder="aprobador">
+        </div>
+      </div>
+
+      <div class="navbar-brand">
+        <div>
+          <label for="autorizador">Autorizado Por:</label>
+          <input type="text" class="form-control" id="autorizador" placeholder="autorizador">
+        </div>
+      </div>
+
+      <div class="navbar-brand">
+        <div>
+          <label for="correo">Correo:</label>
+          <input type="email" class="form-control" id="correo" placeholder="correo">
+        </div>
+      </div>
+    </div>
+    <div >
+      <button id="Boton" >Guardar</button>
+    </div> 
+    <div>
+      <button id="Boton" >Limpiar</button>
+    </div>
+  </div>
+</div>
+</form>
