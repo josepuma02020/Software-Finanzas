@@ -33,6 +33,10 @@ namespace Domain.Aplicacion.Entidades.CuentasContables
             this.FechaEdicion = DateTime.Now;
             return this;
         }
+        #region Configuracion
+        public IEnumerable<ConceptoxCuentaContable> ConceptosCuentasContableCredito { get; set; }
+        public IEnumerable<ConceptoxCuentaContable>? ConceptosCuentasContableDebito { get; set; }
+        #endregion
     }
     public class ConceptoxCuentaContable : Entity<Guid>
     {
@@ -40,6 +44,8 @@ namespace Domain.Aplicacion.Entidades.CuentasContables
         public CuentaContable CuentaContableCredito { get; set; }
         public Guid CuentaContableDebitoId { get; set; }
         public Guid CuentaContableCreditoId { get; set; }
-    private ConceptoxCuentaContable() : base(null) {}
+        private ConceptoxCuentaContable() : base(null) { }
+
+        public ConceptoxCuentaContable(Usuario creador) : base(creador) { }
     }
 }

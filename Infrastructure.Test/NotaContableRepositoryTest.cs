@@ -1,6 +1,7 @@
 ﻿using Domain.Aplicacion.EntidadesConfiguracion;
 using Domain.Base;
 using Domain.Documentos;
+using Domain.Documentos.ConfiguracionDocumentos;
 using Domain.Entities;
 using Domain.Repositories;
 using Infraestructure.Context;
@@ -26,6 +27,11 @@ namespace Infrastructure.Test
         public static Guid IdAreaProyectos = Guid.NewGuid();
         public static Guid IdUsuario1 = Guid.NewGuid();
         public static Guid IdUsuario2 = Guid.NewGuid();
+        public static Guid IdUsuarioAdmin = Guid.NewGuid();
+        public static Guid IdProceso = Guid.NewGuid();
+
+        public Usuario creador = default;
+        public Proceso proceso = default;
         [SetUp]
         public void Setup()
         {
@@ -50,60 +56,72 @@ namespace Infrastructure.Test
             context.Areas.Add(areaProyectos);
             context.SaveChanges();
             #endregion
+          
+            #region UsuarioAdmin
+            creador = new Usuario()
+            {
+                Id = IdUsuarioAdmin,
+                Nombre="Jose",
+            };
+            context.Usuarios.Add(creador);
+            context.SaveChanges();
+            #endregion
+            #region Proceso
+
+            proceso = new Proceso("Flujo de caja", creador) { Id= IdProceso };
+            context.Procesos.Add(proceso);
+            context.SaveChanges();
+            #endregion
             #region AgregarUsuarioPrueba
             Usuario usuario1 = new Usuario()
             {
                 Id = IdUsuario1,Nombre="Jose",
-                Proceso = new Proceso("Flujo de caja", Guid.NewGuid()) { Area = areaProyectos }
+                Proceso = new Proceso("Flujo de caja", creador) { Area = areaProyectos }
             };
             context.Usuarios.Add(usuario1);
             context.SaveChanges();
             #endregion
+            
             #region AgregarNotaContablePruebaAbierta
-            NotaContable notacontableabierta = new NotaContable()
+            NotaContable notacontableabierta = new NotaContable(creador)
             {
-                UsuarioCreador = new Usuario() { Id = IdUsuario2, Nombre ="Jose" , Proceso = new Proceso("Flujo de caja",Guid.NewGuid()) { Area = areaFinanzas } },
-                ClasificacionDocumento = new ClasificacionDocumento() { Descripcion="Notas"},
+                ClasificacionDocumento = new ClasificacionDocumento(creador) { Descripcion="Notas"},
                 Anulador=usuario1,AnuladorId=IdUsuario1,
                 
-                TipoDocumento = new TipoDocumento(),Comentario = "Nota1",
+                TipoDocumento = new TipoDocumento(creador),Comentario = "Nota1",
                 Importe = 1000000,
                 Tiponotacontable = Tiponotacontable.registrosnota,
                 Id = IdGenericaabierta,
-                EstadoDocumento = EstadoDocumento.Abierto,Proceso = new Proceso("Financiacion",Guid.NewGuid()),
+                EstadoDocumento = EstadoDocumento.Abierto,Proceso = new Proceso("Financiacion", creador),
             };
             context.NotasContables.Add(notacontableabierta);
             context.SaveChanges();
             #endregion
             #region AgregarNotaContablePruebaAbierta
-            NotaContable notacontableabierta2 = new NotaContable()
+            NotaContable notacontableabierta2 = new NotaContable(usuario1)
             {
-                UsuarioCreador = usuario1,
-                CreadorId = IdUsuario1,
-                ClasificacionDocumento = new ClasificacionDocumento() { Descripcion = "Notas" },
-                TipoDocumento = new TipoDocumento(),Comentario="Nota2",
+                ClasificacionDocumento = new ClasificacionDocumento(usuario1) { Descripcion = "Notas" },
+                TipoDocumento = new TipoDocumento(usuario1),Comentario="Nota2",
                 Importe = 1000000,
                 Tiponotacontable = Tiponotacontable.registrosnota,
                 Id = IdGenericaabierta2,
                 Verificador = null,
                 EstadoDocumento = EstadoDocumento.Abierto,
-                Proceso = new Proceso("Financiacion", Guid.NewGuid()),
+                Proceso = new Proceso("Financiacion", usuario1),
             };
             context.NotasContables.Add(notacontableabierta2);
             context.SaveChanges();
             #endregion
             #region AgregarNotaContablePruebacerrada
-            NotaContable notacontablecerrada = new NotaContable()
+            NotaContable notacontablecerrada = new NotaContable(usuario1)
             {
-                UsuarioCreador = usuario1,
-                CreadorId = IdUsuario1,
-                ClasificacionDocumento = new ClasificacionDocumento() { Descripcion = "Notas" },
-                TipoDocumento = new TipoDocumento(),Comentario="Nota3",
+                ClasificacionDocumento = new ClasificacionDocumento(usuario1) { Descripcion = "Notas" },
+                TipoDocumento = new TipoDocumento(usuario1),Comentario="Nota3",
                 Importe = 122222,
                 Tiponotacontable = Tiponotacontable.registrosnota,
                 Id = IdGenericacerrada,
                 EstadoDocumento = EstadoDocumento.Cerrado,
-                Proceso = new Proceso("Financiacion", Guid.NewGuid()),
+                Proceso = new Proceso("Financiacion", usuario1),
             };
             context.NotasContables.Add(notacontablecerrada);
             context.SaveChanges();

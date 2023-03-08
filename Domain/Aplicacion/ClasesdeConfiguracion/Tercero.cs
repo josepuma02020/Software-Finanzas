@@ -1,5 +1,6 @@
 ﻿using Domain.Aplicacion.Entidades;
 using Domain.Base;
+using Domain.Documentos;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         public Estado Estado { get; set; }
         public Usuario UsuarioEditor { get; set; }
         public Guid UsuarioEditorId { get; set; }
+        #region Configuracion
+        public IEnumerable<Factura> Facturas { get; set; }
+        #endregion
         private Tercero() : base(null)
         {
             Estado = Estado.Activo;

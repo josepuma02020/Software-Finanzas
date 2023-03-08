@@ -27,7 +27,7 @@ namespace Application.Servicios.Entidades
         public Task<Response> Handle(ActualizarSaldoEntidadDto request, CancellationToken cancellationToken)
         {
 
-            var nuevoSaldo = new SaldosDiarios(Validator.Usuario,Validator.CuentaBancaria)
+            var nuevoSaldo = new Saldos(Validator.Usuario,Validator.CuentaBancaria)
             {
                 SaldoDisponible=request.SaldoDisponible,
                 TieneDisponible=request.TieneDisponible,
@@ -36,12 +36,12 @@ namespace Application.Servicios.Entidades
             };
 
 
-            _unitOfWork.GenericRepository<SaldosDiarios>().Add(nuevoSaldo);
+            _unitOfWork.GenericRepository<Saldos>().Add(nuevoSaldo);
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
                 Data = nuevoSaldo,
-                Mensaje = $"LEl saldo se ha actualizado con exito."
+                Mensaje = $"El saldo se ha actualizado con exito."
             });
         }
     }

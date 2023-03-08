@@ -33,6 +33,7 @@ namespace Domain.Entities
         public IEnumerable<Configuracion> ConfiguracionesCreadas { get; set; }
         #endregion
         #region Areas
+        public IEnumerable<BaseCuenta> CuentasCreadas { get; set; }
         public IEnumerable<Area> AreasCreadas { get; set; }
         public IEnumerable<Area> AreasEditadas { get; set; }
         public IEnumerable<Equipo> EquiposCreados { get; set; }

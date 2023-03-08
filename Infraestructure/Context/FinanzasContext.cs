@@ -1,4 +1,5 @@
-﻿using Domain.Aplicacion;
+﻿using System;
+using Domain.Aplicacion;
 using Domain.Aplicacion.EntidadesConfiguracion;
 using Domain.Base;
 using Domain.Documentos;
@@ -13,6 +14,9 @@ using Infraestructure.Configuration;
 using Domain.Aplicacion.Entidades;
 using Domain.Aplicacion.Entidades.CuentasBancarias;
 using Domain.Aplicacion.Entidades.CuentasContables;
+using Infraestructure.Configuration.Cuentas;
+using Infraestructure.Configuration.Bases;
+using Infraestructure.Configuration.Documentos;
 
 namespace Infraestructure.Context
 {
@@ -24,6 +28,8 @@ namespace Infraestructure.Context
         {
             ProviderName = Database.ProviderName;
         }
+        public DbSet<Pagos> Pagos { get; set; }
+        public DbSet<ConfiguracionServicios> ConfiguracionServicios { get; set; }
         public DbSet<CuentasBancariasxFactura> CuentasxFactura { get; set; }
         public DbSet<CuentaContable> CuentasContables { get; set; }
         public DbSet<CuentaBancaria> CuentasBancarias { get; set; }
@@ -53,17 +59,33 @@ namespace Infraestructure.Context
 
             //Documentos
             modelBuilder.ApplyConfiguration(new DocumentoEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new EntityTypeConfiguration<NotaContable>());
-            modelBuilder.ApplyConfiguration(new EntityTypeConfiguration<Factura>());
+            modelBuilder.ApplyConfiguration(new NotaContableEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new FacturaEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new SaldosEntityConfiguration());
 
             //Areas
             modelBuilder.ApplyConfiguration(new AreaEntityConfiguration());
             modelBuilder.ApplyConfiguration(new EquipoEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ProcesoEntityConfiguration());
 
-            //Usuarios
+            //Clases Primarias
             modelBuilder.ApplyConfiguration(new UsuarioEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CuentasEntityConfiguration());
 
+            //Clases secundarias
+            modelBuilder.ApplyConfiguration(new ConceptosCuentasContbalesEntityConfiguration());
+
+
+            //Inicializaciones
+            modelBuilder.Entity<ConfiguracionServicios>().HasData(
+                new ConfiguracionServicios { Activo=true,Servicio = NombreServicios.ServicioFactura },
+                new ConfiguracionServicios { Activo = true, Servicio = NombreServicios.ServicioNotaContable},
+                new ConfiguracionServicios { Activo = true, Servicio = NombreServicios.ServicioFlujodeCaja}
+                );
+
+            modelBuilder.Entity<ConceptoFactura>().HasData(
+                new ConceptoFactura { Concepto="RI", Id = Guid.NewGuid()}
+                );
 
 
         }

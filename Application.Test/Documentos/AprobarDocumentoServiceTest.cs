@@ -46,7 +46,7 @@ namespace Application.Test.Documentos
             var validatorArea = new RegistrarAreaDtoValidator(_unitOfWork);
             if (_unitOfWork.GenericRepository<Area>().FindFirstOrDefault(e => e.Id == IdAreaFinanzas) == null)
             {
-                nuevaArea = new Area(null)
+                nuevaArea = new Area()
                 {
                     Id = IdAreaFinanzas,
                     NombreArea = "Finanzas",

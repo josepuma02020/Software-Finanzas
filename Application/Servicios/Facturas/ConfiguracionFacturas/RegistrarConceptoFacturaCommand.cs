@@ -28,12 +28,11 @@ namespace Application.Servicios.Facturas.ConfiguracionFacturas
             {
                 Concepto = request.ConceptoFactura,
                 Descripcion = request.Descripcion,
-                Id = Guid.NewGuid(),
             };
-
-
+            
             _unitOfWork.GenericRepository<ConceptoFactura>().Add(nuevoConceptoFactura);
             _unitOfWork.Commit();
+
             return Task.FromResult(new Response
             {
                 Data = nuevoConceptoFactura,

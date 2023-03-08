@@ -1,4 +1,5 @@
-﻿using Domain.Base;
+﻿using Domain.Aplicacion.EntidadesConfiguracion;
+using Domain.Base;
 using Domain.Entities;
 using Domain.Extensions;
 using System;
@@ -20,7 +21,9 @@ namespace Domain.Documentos.ConfiguracionDocumentos
         public ClasificacionDocumento(Usuario? usuariocreador) : base(usuariocreador)
         {
         }
+        #region Configuracion Infraestructure
+        public IEnumerable<NotaContable> NotasContables { get; set; }
+        #endregion
 
-       
     }
 }

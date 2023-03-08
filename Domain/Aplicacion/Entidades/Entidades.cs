@@ -1,4 +1,5 @@
-﻿using Domain.Base;
+﻿using Domain.Aplicacion.EntidadesConfiguracion;
+using Domain.Base;
 using Domain.Entities;
 using Domain.Extensions;
 using System;
@@ -35,6 +36,9 @@ namespace Domain.Aplicacion.Entidades
             this.Estado = estado;
             return this;
         }
+        #endregion
+        #region Configuracion
+        public IEnumerable<BaseCuenta> CuentasConfiguracion { get; set; }
         #endregion
     }
     public enum Estado

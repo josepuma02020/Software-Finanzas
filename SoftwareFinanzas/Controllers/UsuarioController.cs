@@ -1,4 +1,5 @@
-﻿using Application.Servicios.Usuarios;
+﻿using System.Collections.Generic;
+using Application.Servicios.Usuarios;
 using Domain.Contracts;
 using Domain.Entities;
 using MediatR;
@@ -26,6 +27,16 @@ namespace SoftwareFinanzas.Controllers
         public IActionResult Post(RegistrarUsuarioDto usuarioDto)
         {
             return Ok(_mediater.Send(usuarioDto).Result);
+        }
+        [HttpPut("editarusuario")]
+        public IActionResult ModificarRole(ModificarRoleDeUsuarioDto modificarRoleDeUsuario)
+        {
+            return Ok(_mediater.Send(modificarRoleDeUsuario).Result);
+        }
+        [HttpPut("editarusuario")]
+        public IActionResult AsignarProceso(AsignarProcesoUsuarioDto modificarRoleDeUsuario)
+        {
+            return Ok(_mediater.Send(modificarRoleDeUsuario).Result);
         }
     }
 }
