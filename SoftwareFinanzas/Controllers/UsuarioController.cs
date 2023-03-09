@@ -2,6 +2,7 @@
 using Application.Servicios.Usuarios;
 using Domain.Contracts;
 using Domain.Entities;
+using Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,10 +19,10 @@ namespace SoftwareFinanzas.Controllers
             _mediater = mediator;
             _unitOfWork = unitOfWork;
         }
-        [HttpGet]
-        public IEnumerable<Usuario> Get()
+        [HttpPost]
+        public ActionResult<IEnumerable<ConsultaUsuarioDto>> Post(GetUsuariosParametrizadaRequest parametros)
         {
-            return _unitOfWork.UsuarioRepository.FindBy(includeProperties:"Rol");
+            return Ok(_unitOfWork.UsuarioRepository.GetUsuarioParametrizados(parametros));
         }
         [HttpPost]
         public IActionResult Post(RegistrarUsuarioDto usuarioDto)

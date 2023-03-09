@@ -17,8 +17,7 @@ namespace Infraestructure.Repositories
         public UsuarioRepository(IDbContext context) : base(context)
         {
         }
-
-        public IEnumerable<ConsultaUsuarioDto> GetNotasContablesParametrizadas(GetUsuariosParametrizadaRequest request)
+        public IEnumerable<ConsultaUsuarioDto> GetUsuarioParametrizados(GetUsuariosParametrizadaRequest request)
         {
 
             var query = Dbset.AsQueryable();

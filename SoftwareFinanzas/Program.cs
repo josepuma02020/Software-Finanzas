@@ -6,11 +6,9 @@ using Infraestructure.Base;
 using Infraestructure.Context;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using WebApi.Infrastructure;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

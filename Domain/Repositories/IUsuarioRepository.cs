@@ -12,14 +12,13 @@ namespace Domain.Repositories
 {
     public interface IUsuarioRepository : IGenericRepository<Usuario>
     {
-        IEnumerable<ConsultaUsuarioDto> GetNotasContablesParametrizadas(GetUsuariosParametrizadaRequest request);
+        IEnumerable<ConsultaUsuarioDto> GetUsuarioParametrizados(GetUsuariosParametrizadaRequest request);
     }
     public class GetUsuariosParametrizadaRequest
     {
         public FiltroRol FiltroRol { get; set; } = FiltroRol.All;
         public bool FiltroNombre { get; set; }
         public bool FiltroIdentificacion { get; set; }
-
         public string? Identificacion { get; set; }
         public string? Nombre { get; set; }
         public bool FiltroEmail { get; set; }
@@ -43,6 +42,7 @@ namespace Domain.Repositories
         [Description("Administrador")] Administrador,
         [Description("Administrador de notas contables")] AdministradorNotaContable,
         [Description("Administrador de facturas")] AdministradorFactura,
+        [Description("Administrador de flujo de caja")] AdministradorFlujodeCaja,
         [Description("Robot Uipath")] Bot,
         [Description("Robot Uipath")] All,
     }

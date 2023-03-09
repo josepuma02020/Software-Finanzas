@@ -1,0 +1,25 @@
+<div class="tabla-usuarios">
+    <h2 class="titulo-tabla">Usuarios</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Area</th>
+                <th>Equipo</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{usuario.nombreUsuario}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.nombreArea}}</td>
+                <td>{{usuario.nombreEquipo}}</td>
+                <td>{{usuario.rol}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

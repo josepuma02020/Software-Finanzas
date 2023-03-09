@@ -1,42 +1,31 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="../assets/logo.png" alt="Logo de la empresa" width="60" height="60" class="d-inline-block align-text-center">
-          Software de Finanzas
-        </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+      <a class="navbar-brand" href="#">
+        <img src="../assets/logo.png" alt="Logo de la empresa" width="60" height="60"
+          class="d-inline-block align-text-center">
+        Software de Finanzas
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item"
-              [routerLinkActive]="['link-active']"
-              [routerLinkActiveOptions]="{ exact: true }">
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-dark" [routerLink]="['/']">Inicio</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Notas Contables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" id="navbarDropdownMenuLink" [routerLink]="['/page2']">Registrar Nota</a>
               <ul class="dropdown-submenu">
-                <li><a class="dropdown-item" [routerLink]="['/formularioNotaContablePorRegistro']">Nota Contable</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/formularioNotaContablePorRegistro']">Nota Contable</a>
+                </li>
                 <li><a class="dropdown-item" [routerLink]="['/notaContablePorConcepto']">Por Concepto</a></li>
                 <li><a class="dropdown-item" [routerLink]="['/notaContablePorAdjunto']">Por Adjunto</a></li>
               </ul>
@@ -46,7 +35,8 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Recaudos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -56,7 +46,8 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Flujo de caja
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -71,19 +62,16 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Configuracion General
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item dropdown-toggle" [routerLink]="['/page1']">Generales</a>
-              <a class="dropdown-submenu" [routerLink]="['/page2']">Cuentas</a>
+              <a class="dropdown-item" [routerLink]="['/Entidades']">Entidades</a>
               <a class="dropdown-item" [routerLink]="['/page2']">Procesos</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Lista de ANB</a>
-              <a class="dropdown-item" [routerLink]="['/page2']">Usuarios</a>
-              <div>
-                <a ngbDropdownItem href="#">1</a>
-                <a ngbDropdownItem href="#">2</a>
-              </div>
+              <a class="dropdown-item" [routerLink]="['/page2']">Terceros(AN8)</a>
+              <a class="dropdown-item" [routerLink]="['/Usuarios']">Usuarios</a>
+
             </div>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">

@@ -1,0 +1,24 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="m-0" [color]="data.classAlert">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pt-2 m-0">
+        <h5>{{data.titulo}}</h5>
+        <h6>Descripción:</h6>
+        <ol *ngIf="data.errors" style="text-align: left;">
+            <li *ngFor="let err of data.errors"><span class="text-muted">{{ err }}</span></li>
+        </ol>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button mat-button class="save-button" (click)="matDialogRef.close()" aria-label="OK">
+            Ok
+        </button>
+
+    </div>
+</div>
