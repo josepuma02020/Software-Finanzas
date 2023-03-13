@@ -1,12 +1,11 @@
 ﻿using System;
-using FluentValidation;
-using MediatR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
-namespace WebApi.Infrastructure
+using FluentValidation;
+using MediatR;
+namespace SoftwareFinanzas.Infraestructure
 {
     public class ValidatorPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
@@ -17,15 +16,15 @@ namespace WebApi.Infrastructure
         {
             _validators = validators;
         }
-        
+
 
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var failures = _validators
-                 .Select(v => v.Validate(request))
-                 .SelectMany(result => result.Errors)
-                 .Where(f => f != null)
-                 .ToList();
+                .Select(v => v.Validate(request))
+                .SelectMany(result => result.Errors)
+                .Where(f => f != null)
+                .ToList();
 
             if (failures.Any())
             {
@@ -37,7 +36,18 @@ namespace WebApi.Infrastructure
 
         public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var failures = _validators
+                .Select(v => v.Validate(request))
+                .SelectMany(result => result.Errors)
+                .Where(f => f != null)
+                .ToList();
+
+            if (failures.Any())
+            {
+                throw new ValidationException(failures);
+            }
+
+            return next();
         }
     }
 }

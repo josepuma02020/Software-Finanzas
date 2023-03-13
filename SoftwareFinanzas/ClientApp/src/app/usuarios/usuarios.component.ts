@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from '../Servicios/usuario/usuario.service';
-import { MatDialog } from '@angular/material/dialog';
 import { CustomSnackBarService } from '../Servicios/custom-snack-bar';
 import { UsuarioConsultaDtoModel } from '../models/usuarios/usuario-consulta-dto.model';
 import { UsuarioParametrizado } from '../models/usuarios/usuarioparametrizado.model';
@@ -18,7 +16,7 @@ export class UsuariosComponent implements OnInit {
   private _parametrosusuario: UsuarioParametrizado = new UsuarioParametrizado();
 
 
-  constructor(private usuarioService: UsuarioService, private dialog: MatDialog, private _snackBar: CustomSnackBarService) { }
+  constructor(private usuarioService: UsuarioService, private _snackBar: CustomSnackBarService) { }
 
   async ngOnInit() {
     this.getUsuarios();

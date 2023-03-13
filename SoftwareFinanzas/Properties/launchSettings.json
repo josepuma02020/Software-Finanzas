@@ -9,14 +9,13 @@
   },
   "profiles": {
     "SoftwareFinanzas": {
-      "commandName": "SoftwareFinanzas",
-      "launchUrl": "http://localhost:4200",
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7022;http://localhost:5209",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
-      },
-      "applicationUrl": "http://localhost:44481"
-
+      }
     },
     "IIS Express": {
       "commandName": "IISExpress",

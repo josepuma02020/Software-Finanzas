@@ -9,15 +9,22 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SoftwareFinanzas.Infraestructure;
 using WebApi.Infrastructure;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+// builder.Services.AddDbContext<FinanzasContext>((_, optionsBuilder) => optionsBuilder
+    // .UseSqlServer(builder.Configuration["ConnectionString"]));
 builder.Services.AddDbContext<FinanzasContext>((_, optionsBuilder) => optionsBuilder
-    .UseSqlServer(builder.Configuration["ConnectionString"]));
+    .UseInMemoryDatabase("Finanzas"));
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorPipelineBehavior<,>));
+builder.Services.AddControllersWithViews ()
+				.AddNewtonsoftJson (options =>
+					options.SerializerSettings.ReferenceLoopHandling =
+					Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 AssemblyScanner.FindValidatorsInAssembly(Assembly.Load("Application")).ForEach(pair =>
 {
     // RegisterValidatorsFromAssemblyContaing does this:
@@ -79,16 +86,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 			#region Activar SwaggerUI
-app.UseSwagger(Options =>
-{
-    Options.SerializeAsV2 = true;
-});
+app.UseSwagger();
 app.UseSwaggerUI(
-    options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Signus Presupuesto v1");
-    }
-);
+				options => {
+					options.SwaggerEndpoint ("/swagger/v1/swagger.json", "Signus Presupuesto v1");
+				});
 			#endregion
 
 app.UseEndpoints(endpoints =>
@@ -115,7 +117,7 @@ app.UseSpa(spa =>
 var scope = app.Services.CreateScope();
 
 var context = scope.ServiceProvider.GetRequiredService<FinanzasContext>();
-context.Database.Migrate();
+// context.Database.Migrate();
 
 app.MapControllerRoute(
     name: "default",

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Application;
 using Application.Servicios.Usuarios;
 using Domain.Contracts;
 using Domain.Entities;
@@ -24,10 +26,10 @@ namespace SoftwareFinanzas.Controllers
         {
             return Ok(_unitOfWork.UsuarioRepository.GetUsuarioParametrizados(parametros));
         }
-        [HttpPost]
-        public IActionResult Post(RegistrarUsuarioDto usuarioDto)
+        [HttpPost("Agregar")]
+        public ActionResult Post(RegistrarUsuarioDto usuarioDto)
         {
-            return Ok(_mediater.Send(usuarioDto).Result);
+            return Ok(_mediater.Send(usuarioDto));
         }
         [HttpPut("editarusuario/rol")]
         public IActionResult ModificarRole(ModificarRoleDeUsuarioDto modificarRoleDeUsuario)
