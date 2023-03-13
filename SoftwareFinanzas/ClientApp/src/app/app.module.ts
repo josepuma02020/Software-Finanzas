@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 
@@ -44,7 +43,7 @@ import { MatDialog } from '@angular/material/dialog';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule, MatToolbarModule,
-    ReactiveFormsModule, MatIconModule, MatDialogModule, OverlayModule, MatSnackBarModule, CommonModule,
+    ReactiveFormsModule, MatIconModule, MatDialogModule, MatSnackBarModule, CommonModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
