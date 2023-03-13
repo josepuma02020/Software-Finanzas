@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SoftwareFinanzas.Infraestructure;
 using WebApi.Infrastructure;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,10 @@ builder.Services.AddDbContext<FinanzasContext>((_, optionsBuilder) => optionsBui
     .UseInMemoryDatabase("Finanzas"));
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorPipelineBehavior<,>));
+builder.Services.AddControllersWithViews ()
+				.AddNewtonsoftJson (options =>
+					options.SerializerSettings.ReferenceLoopHandling =
+					Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 AssemblyScanner.FindValidatorsInAssembly(Assembly.Load("Application")).ForEach(pair =>
 {
     // RegisterValidatorsFromAssemblyContaing does this:
