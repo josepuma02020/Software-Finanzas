@@ -29,9 +29,13 @@ namespace Application.Servicios.Facturas
         {
             var tercero = Validator.Tercero;
             var usuario = Validator.UsuarioRegistroFactura;
-            var nuevafactura = new Factura(usuario, Validator.CuentaxFactura.CuentaBancaria)
+            var cuenta = _unitOfWork.GenericRepository<CuentaBancaria>().FindFirstOrDefault(t=>t.Id == Validator.CuentaxFactura.CuentaBancariaId);
+            var nuevafactura = new Factura(usuario, cuenta)
             {
 
+
+                EquipoCreador = usuario.Equipo,
+                EquipoCreadorId=usuario.EquipoId,
                 Tercero = tercero,
                 Fechapago = request.FechaPago,
                 Valor = request.Valor,
@@ -42,13 +46,11 @@ namespace Application.Servicios.Facturas
                 Concepto = Validator.ConceptoFactura,
                 Id = Guid.NewGuid(),
             };
-
-
             _unitOfWork.GenericRepository<Factura>().Add(nuevafactura);
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
-                Data = nuevafactura,
+                //Data = nuevafactura,
                 Mensaje = $"La factura se registró correctamente."
             });
         }

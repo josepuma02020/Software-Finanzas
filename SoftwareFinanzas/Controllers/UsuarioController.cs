@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application;
 using Application.Servicios.Usuarios;
@@ -24,6 +25,7 @@ namespace SoftwareFinanzas.Controllers
         [HttpPost]
         public ActionResult<IEnumerable<ConsultaUsuarioDto>> Post(GetUsuariosParametrizadaRequest parametros)
         {
+            Console.WriteLine(parametros);
             return Ok(_unitOfWork.UsuarioRepository.GetUsuarioParametrizados(parametros));
         }
         [HttpPost("Agregar")]

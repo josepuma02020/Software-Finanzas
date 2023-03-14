@@ -26,16 +26,16 @@ namespace Domain.Base
         public Guid? UsuarioRevisionId { get; set; }
         public Guid? UsuarioBotId { get; set; }
         public Guid? ReversorJDId { get; set; }
-        public Guid RechazadorId { get; set; }
+        public Guid? RechazadorId { get; set; }
         public Guid? AnuladorId { get; set; }
         public Guid? VerificadorId { get; set; }
         public Guid? AutorizadorId { get; set; }
         public Guid? AprobadorId { get; set; }
-        public DateTime FechaAprobacion { get; set; }
-        public DateTime FechaAutorizacion { get; set; }
-        public DateTime FechaVerificacion { get; set; }
-        public DateTime FechaAnulacion { get; set; }
-        public DateTime Fechabot { get; set; }
+        public DateTime? FechaAprobacion { get; set; }
+        public DateTime? FechaAutorizacion { get; set; }
+        public DateTime? FechaVerificacion { get; set; }
+        public DateTime? FechaAnulacion { get; set; }
+        public DateTime? Fechabot { get; set; }
         public Equipo EquipoCreador { get; set; }
         public Guid EquipoCreadorId { get; set; }
         public ProcesosDocumentos ProcesoDocumento { get; set; }
@@ -47,7 +47,6 @@ namespace Domain.Base
         }
         public BaseEntityDocumento (Usuario usuariocreador) : base(usuariocreador)
         {
-            EquipoCreador = usuariocreador.Equipo;
             EstadoDocumento = EstadoDocumento.Abierto;
         }
         public BaseEntityDocumento SetSoportes(List<AppFile> soportes,Usuario usuarioeditor)

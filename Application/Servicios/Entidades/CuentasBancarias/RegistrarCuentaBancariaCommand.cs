@@ -83,7 +83,7 @@ namespace Application.Servicios.Entidades.CuentasBancarias
 
             RuleFor(bdu => bdu.DescripcionCuenta).Cascade(CascadeMode.StopOnFirstFailure)
                .NotEmpty().WithMessage("La descripcion de cuenta es obligatorio.")
-               .Length(5, 100).WithMessage("La descripcion de la cuenta bancaria debe tener mas de 5 caracteres.");
+               .Length(2, 60).WithMessage("La descripcion de la cuenta bancaria debe tener mas de 5 caracteres.");
 
             RuleFor(bdu => bdu.TipoCuentaBancaria).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("El tipo de cuenta bancaria es obligatorio.");

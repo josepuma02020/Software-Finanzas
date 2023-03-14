@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infraestructure.Configuration.ConfigUsuarios
+namespace SoftwareFinanzas.Controllers.Documentos
 {
     public class NotaContableController
     {
@@ -20,6 +20,6 @@ namespace Infraestructure.Configuration.ConfigUsuarios
             _mediater = mediator;
             _unitOfWork = unitOfWork;
         }
-       
+
     }
 }

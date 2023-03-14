@@ -27,8 +27,6 @@ namespace Domain.Entities
         public Guid EquipoId { get; set; }
         public Guid? ProcesoId { get; set; }
         public Rol  Rol { get; set; }
-        public Usuario UsuarioAsignaProceso { get; set; }
-        public Guid UsuarioAsignaProcesoId { get; set; }
 
         //Configuraciones
         #region Configuracion de relaciones
@@ -84,8 +82,7 @@ namespace Domain.Entities
         public Usuario SetProceso(Proceso proceso,Usuario usuarioAsignaProceso,Guid UsuarioAsignaProcesoId)
         {
             this.Proceso = proceso;
-            this.UsuarioAsignaProceso = usuarioAsignaProceso;
-            this.UsuarioAsignaProcesoId = UsuarioAsignaProcesoId;
+            this.UsuarioEditor = usuarioAsignaProceso; this.UsuarioEditorId = UsuarioAsignaProcesoId;
             return this;
         }
     }

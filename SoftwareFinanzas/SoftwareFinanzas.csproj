@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\img\" />
+    <Folder Include="Controllers\Entidades\Cuentas\" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

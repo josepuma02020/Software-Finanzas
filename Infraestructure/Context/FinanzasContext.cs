@@ -19,9 +19,13 @@ using Infraestructure.Configuration.Documentos;
 using Infraestructure.Configuration.Aplicacion.Areas;
 using Infraestructure.Configuration.Entidades;
 using Infraestructure.Configuration.Aplicacion.Terceros;
+using Microsoft.Identity.Client;
 
 namespace Infraestructure.Context
 {
+
+
+
     public sealed class FinanzasContext : DbContextBase
     {
         public static string ProviderName { get; private set; }
@@ -101,8 +105,10 @@ namespace Infraestructure.Context
                 new ConceptoFactura { Concepto="RI", Id = Guid.NewGuid()}
                 );
 
+           
+
 
         }
-        
+
     }
 }

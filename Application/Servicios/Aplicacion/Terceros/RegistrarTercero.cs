@@ -36,7 +36,7 @@ namespace Application.Servicios.Aplicacion.Terceros
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
-                Data = nuevotercero,
+                //Data = nuevotercero,
                 Mensaje = $"El tercero se registró correctamente."
             });
         }

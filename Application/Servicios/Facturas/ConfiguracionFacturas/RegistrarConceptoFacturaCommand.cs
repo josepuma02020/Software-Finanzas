@@ -35,7 +35,7 @@ namespace Application.Servicios.Facturas.ConfiguracionFacturas
 
             return Task.FromResult(new Response
             {
-                Data = nuevoConceptoFactura,
+                //Data = nuevoConceptoFactura,
                 Mensaje = $"El concepto de factura se registró correctamente."
             });
         }
@@ -64,7 +64,7 @@ namespace Application.Servicios.Facturas.ConfiguracionFacturas
         {
             RuleFor(bdu => bdu.ConceptoFactura).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage($"El concepto de factura es obligatorio.")
-                .Length(2, 15).WithMessage($"El concepto debe tener de 1 a 15 caracteres.");
+                .Length(2, 25).WithMessage($"El concepto debe tener de 1 a 15 caracteres.");
 
             RuleFor(bdu => bdu.UsuarioId).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("El usuario es obligatorio.")

@@ -21,7 +21,7 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         public List<Equipo>? Equipos { get; set; }
         public Area() : base(null)
         {
-
+            Id = Guid.NewGuid();
         }
         public Area(Usuario? usuariocreador) : base(usuariocreador)
         {
@@ -55,7 +55,7 @@ namespace Domain.Aplicacion.EntidadesConfiguracion
         }
         public Equipo( Usuario? usuariocreador) : base(usuariocreador)
         {
-            
+
         }
         public Equipo(string nombreEquipo,Usuario? usuariocreador):base(usuariocreador)
         {

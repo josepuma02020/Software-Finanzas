@@ -35,7 +35,7 @@ namespace Application.Servicios.Usuarios
                 var nuevoEquipo = new Equipo(null)
                 {
                     Area = nuevaArea,
-                    
+                    Id=Guid.NewGuid(),
                     NombreEquipo = request.NombreEquipo,
                     CodigoEquipo = request.CodigoEquipo, 
                 };
@@ -49,6 +49,8 @@ namespace Application.Servicios.Usuarios
                 {
                     var nuevoEquipo = new Equipo(null)
                     {
+                        AreaId=Area.Id,
+                        Id = Guid.NewGuid(),
                         Area = Area,
                         NombreEquipo = request.NombreEquipo,
                         CodigoEquipo = request.CodigoEquipo,
@@ -60,8 +62,8 @@ namespace Application.Servicios.Usuarios
             }
             var nuevousuario = new Usuario(null)
             {
-            
-            Equipo=Equipo,
+             Area = Area, AreaId = Area.Id,
+            Equipo =Equipo,
             Nombre=request.Nombre,
             Email=request.Email,
             EquipoId=Equipo.Id,
@@ -72,7 +74,7 @@ namespace Application.Servicios.Usuarios
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
-                Data = nuevousuario,
+                //Data=nuevousuario,
                 Mensaje = $"El usuario {request.Nombre} se registró correctamente."
             });
         }

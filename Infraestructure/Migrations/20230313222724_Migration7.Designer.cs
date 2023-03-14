@@ -4,6 +4,7 @@ using Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(FinanzasContext))]
-    partial class FinanzasContextModelSnapshot : ModelSnapshot
+    [Migration("20230313222724_Migration7")]
+    partial class Migration7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,23 +139,23 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ca5c6df-fe7e-48d0-8d38-546db35cb248"),
+                            Id = new Guid("6d69a0e9-ef70-4634-bec0-1e9f7a405630"),
                             Activo = true,
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(791),
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 17, 27, 23, 140, DateTimeKind.Local).AddTicks(1387),
                             Servicio = "Facturas"
                         },
                         new
                         {
-                            Id = new Guid("b97da836-ca9e-4e0f-a739-16a47591dc4b"),
+                            Id = new Guid("0f79c215-5dfd-423f-9d67-1814183bef7c"),
                             Activo = true,
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(858),
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 17, 27, 23, 140, DateTimeKind.Local).AddTicks(1436),
                             Servicio = "Notas Contables"
                         },
                         new
                         {
-                            Id = new Guid("3a9f297b-8923-4811-9115-42fa12883df3"),
+                            Id = new Guid("d21230b4-a402-47e2-aabb-0369f5719baa"),
                             Activo = true,
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(861),
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 17, 27, 23, 140, DateTimeKind.Local).AddTicks(1438),
                             Servicio = "Flujo de Caja"
                         });
                 });
@@ -588,9 +591,9 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("58984691-69b3-407b-8e02-75d9b2e6e972"),
+                            Id = new Guid("f98c296a-a3b3-4a97-abca-1f649f0dd705"),
                             Concepto = "RI",
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(1197)
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 17, 27, 23, 140, DateTimeKind.Local).AddTicks(1687)
                         });
                 });
 
@@ -1076,8 +1079,16 @@ namespace Infraestructure.Migrations
                 {
                     b.HasBaseType("Domain.Base.Cuenta");
 
+                    b.Property<Guid?>("ConfiguracionFacturaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ConfiguracionFacturaId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("TipoCuentaBancaria")
                         .HasColumnType("int");
+
+                    b.HasIndex("ConfiguracionFacturaId1");
 
                     b.HasDiscriminator().HasValue("CuentaBancaria");
                 });
@@ -1702,6 +1713,15 @@ namespace Infraestructure.Migrations
                         .IsRequired();
 
                     b.Navigation("CuentaBancaria");
+                });
+
+            modelBuilder.Entity("Domain.Aplicacion.Entidades.CuentasBancarias.CuentaBancaria", b =>
+                {
+                    b.HasOne("Domain.Documentos.CuentasBancariasxFactura", "ConfiguracionFactura")
+                        .WithMany()
+                        .HasForeignKey("ConfiguracionFacturaId1");
+
+                    b.Navigation("ConfiguracionFactura");
                 });
 
             modelBuilder.Entity("Domain.Aplicacion.Entidades.CuentasContables.CuentaContable", b =>

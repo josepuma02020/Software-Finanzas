@@ -13,7 +13,8 @@ import { Filtrorolusuario } from '../models/enums/filtrorolusuario.model';
 export class UsuariosComponent implements OnInit {
 
   public usuarios: UsuarioConsultaDtoModel[] = []
-  private _parametrosusuario: UsuarioParametrizado = new UsuarioParametrizado();
+  public _parametrosusuario: UsuarioParametrizado = new UsuarioParametrizado();
+  
 
 
   constructor(private usuarioService: UsuarioService, private _snackBar: CustomSnackBarService) { }

@@ -36,7 +36,7 @@ namespace Application.Servicios.Entidades
             _unitOfWork.Commit();
             return Task.FromResult(new Response
             {
-                Data = nuevaentidad,
+                //Data = nuevaentidad,
                 Mensaje = $"La Entidad ha sido registrada con exito."
             });
         }

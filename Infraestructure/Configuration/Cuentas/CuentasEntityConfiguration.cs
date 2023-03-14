@@ -11,6 +11,7 @@ using Domain.Aplicacion.Entidades;
 using Domain.Aplicacion.Entidades.CuentasBancarias;
 using Domain.Base;
 using Domain.Aplicacion.Entidades.CuentasContables;
+using Domain.Documentos;
 
 namespace Infraestructure.Configuration.Cuentas
 {
@@ -31,6 +32,8 @@ namespace Infraestructure.Configuration.Cuentas
             builder.Property(t => t.DescripcionCuenta).HasMaxLength(60);
         }
     }
+
+
     public class CuentaBancariaEntityConfiguration : IEntityTypeConfiguration<CuentaBancaria>
     {
         public void Configure(EntityTypeBuilder<CuentaBancaria> builder)

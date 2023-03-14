@@ -4,6 +4,7 @@ using Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(FinanzasContext))]
-    partial class FinanzasContextModelSnapshot : ModelSnapshot
+    [Migration("20230313190312_Migration2")]
+    partial class Migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,23 +139,23 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ca5c6df-fe7e-48d0-8d38-546db35cb248"),
+                            Id = new Guid("f1771e65-5a1f-4f2a-ba3e-6b36ae11cbe6"),
                             Activo = true,
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(791),
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 14, 3, 11, 663, DateTimeKind.Local).AddTicks(1035),
                             Servicio = "Facturas"
                         },
                         new
                         {
-                            Id = new Guid("b97da836-ca9e-4e0f-a739-16a47591dc4b"),
+                            Id = new Guid("e2c3c32d-faaa-417d-91cc-beea24193838"),
                             Activo = true,
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(858),
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 14, 3, 11, 663, DateTimeKind.Local).AddTicks(1083),
                             Servicio = "Notas Contables"
                         },
                         new
                         {
-                            Id = new Guid("3a9f297b-8923-4811-9115-42fa12883df3"),
+                            Id = new Guid("3079367e-ca28-4cde-af2e-5be882d1eed4"),
                             Activo = true,
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(861),
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 14, 3, 11, 663, DateTimeKind.Local).AddTicks(1085),
                             Servicio = "Flujo de Caja"
                         });
                 });
@@ -588,9 +591,9 @@ namespace Infraestructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("58984691-69b3-407b-8e02-75d9b2e6e972"),
+                            Id = new Guid("6495ac34-c2e1-42cb-b342-e3645b77ffc4"),
                             Concepto = "RI",
-                            FechaDeCreacion = new DateTime(2023, 3, 13, 18, 8, 55, 118, DateTimeKind.Local).AddTicks(1197)
+                            FechaDeCreacion = new DateTime(2023, 3, 13, 14, 3, 11, 663, DateTimeKind.Local).AddTicks(1286)
                         });
                 });
 

@@ -8,5 +8,5 @@ export enum Filtrorolusuario {
     AdministradorNotaContable,
     AdministradorFactura,
     Bot,
-    All, AdministradorFlujodeCaja
+  AdministradorFlujodeCaja, All
 }

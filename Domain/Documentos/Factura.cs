@@ -34,7 +34,7 @@ namespace Domain.Documentos
         {
             ProcesoDocumento = ProcesosDocumentos.Facturas;
         }
-        public Factura(Usuario? usuariocreador, CuentaBancaria cuentabancaria) : base(usuariocreador)
+        public Factura(Usuario usuariocreador, CuentaBancaria cuentabancaria) : base(usuariocreador)
         {
             ProcesoDocumento = ProcesosDocumentos.Facturas; CuentaBancaria = cuentabancaria; CuentaBancariaId = cuentabancaria.Id;
         }

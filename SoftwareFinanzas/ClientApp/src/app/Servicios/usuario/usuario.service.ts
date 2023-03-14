@@ -16,7 +16,8 @@ export class UsuarioService extends Service {
   constructor(public httpClient: HttpClient, dialog: MatDialog) {
     super(httpClient, dialog)
   }
+
   public getUsuarios(parametros: UsuarioParametrizado): Observable<UsuarioConsultaDtoModel[]> {
-    return this.httpClient.post<UsuarioConsultaDtoModel[]>(`${this.ruta}Usuario`, parametros)
+    return this.httpClient.post<UsuarioConsultaDtoModel[]>(`https://localhost:7022/api/Usuario`, parametros)
   }
 }

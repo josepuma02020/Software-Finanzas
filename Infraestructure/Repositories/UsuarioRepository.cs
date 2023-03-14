@@ -39,7 +39,7 @@ namespace Infraestructure.Repositories
             if (request.FiltroEquipo) query = query.Where(t => t.EquipoId == request.EquipoId);
             if (request.FiltroArea) query = query.Where(t => t.AreaId == request.AreaId);
 
-            return query.Include(t => t.Proceso).Include(t => t.Area).Include(t => t.Equipo).Include(t => t.Rol).Include(t=>t.UsuarioAsignaProceso)
+            return query.Include(t => t.Proceso).Include(t => t.Area).Include(t => t.Equipo).Include(t=>t.UsuarioEditor)
                 .Select(t => new ConsultaUsuarioDto()
                 {
                      Email=t.Email,
@@ -48,9 +48,10 @@ namespace Infraestructure.Repositories
                      NombreEquipo=t.Equipo.NombreEquipo,
                      NombreProceso=t.Proceso.NombreProceso,
                      NombreUsuario=t.Nombre,
-                     NombreUsuarioAsignoProceso=t.UsuarioAsignaProceso.Nombre,
+                     IdUsuario= t.Id,
+                     NombreEditor=t.UsuarioEditor.Nombre,
                      Rol=t.Rol.GetDescription(),
-                });
+                }).ToList();
         }
 
 

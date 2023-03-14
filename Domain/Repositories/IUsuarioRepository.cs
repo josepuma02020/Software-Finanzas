@@ -54,8 +54,9 @@ namespace Domain.Repositories
         public string NombreArea { get; set; }
         public string Email { get; set; }
         public string Rol { get; set; }
+        public Guid IdUsuario { get; set; }
         public string Identificacion { get; set; }
-        public string NombreUsuarioAsignoProceso{get;set;}
+        public string NombreEditor { get; set; }
 
     }
 

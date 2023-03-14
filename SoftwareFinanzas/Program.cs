@@ -15,10 +15,19 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// builder.Services.AddDbContext<FinanzasContext>((_, optionsBuilder) => optionsBuilder
-    // .UseSqlServer(builder.Configuration["ConnectionString"]));
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:44481").AllowAnyHeader().AllowAnyMethod();
+        });
+});
 builder.Services.AddDbContext<FinanzasContext>((_, optionsBuilder) => optionsBuilder
-    .UseInMemoryDatabase("Finanzas"));
+    .UseSqlServer(builder.Configuration["ConnectionString"]));
+//builder.Services.AddDbContext<FinanzasContext>((_, optionsBuilder) => optionsBuilder
+//    .UseInMemoryDatabase("Finanzas"));
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorPipelineBehavior<,>));
 builder.Services.AddControllersWithViews ()
@@ -32,7 +41,6 @@ AssemblyScanner.FindValidatorsInAssembly(Assembly.Load("Application")).ForEach(p
     // Also register it as its concrete type as well as the interface type
     builder.Services.Add(ServiceDescriptor.Scoped(pair.ValidatorType, pair.ValidatorType));
 });
-
 AssemblyScanner.FindValidatorsInAssembly(Assembly.Load("SoftwareFinanzas")).ForEach(pair =>
 {
     // RegisterValidatorsFromAssemblyContaing does this:
@@ -59,7 +67,6 @@ builder.Services.AddSwaggerGen( );
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -82,7 +89,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
-
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
 			#region Activar SwaggerUI
@@ -117,7 +124,7 @@ app.UseSpa(spa =>
 var scope = app.Services.CreateScope();
 
 var context = scope.ServiceProvider.GetRequiredService<FinanzasContext>();
-// context.Database.Migrate();
+context.Database.Migrate();
 
 app.MapControllerRoute(
     name: "default",

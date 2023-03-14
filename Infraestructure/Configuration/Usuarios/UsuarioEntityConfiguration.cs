@@ -19,7 +19,7 @@ namespace Infraestructure.Configuration.ConfigUsuarios
             builder.HasKey(t => t.Id);
             builder.HasOne(t => t.UsuarioCreador).WithMany().HasForeignKey(t => t.UsuarioCreadorId)
                 .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(t => t.UsuarioAsignaProceso).WithMany(t => t.UsuariosqueAgregoProceso).HasForeignKey(t => t.UsuarioAsignaProcesoId)
+            builder.HasOne(t => t.UsuarioEditor).WithMany().HasForeignKey(t => t.UsuarioEditorId)
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(t => t.Proceso).WithMany(t => t.Usuarios).HasForeignKey(t => t.ProcesoId)
                 .OnDelete(DeleteBehavior.Restrict);
